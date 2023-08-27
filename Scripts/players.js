@@ -113,7 +113,7 @@ function createPlayerRow(item, dataContainer){
     playerPositionRank.classList.add('position-rank');
     /*
     const playerPic = document.createElement('img');
-    playerPic.src = '../Images/Player_Photos/' + item.first_name + '_' + item.last_name + '.png';
+    playerPic.src = 'Images/Player_Photos/' + item.first_name + '_' + item.last_name + '.png';
     playerPic.classList.add('player-pic')
     */
 
@@ -125,7 +125,7 @@ function createPlayerRow(item, dataContainer){
         const flamePic = document.createElement('img');
         flamePic.classList.add('flame-pic');
 
-        flamePic.src = '../Images/Icons/flames.png';
+        flamePic.src = 'Images/Icons/flames.png';
         //removeCheckeredBackground(fire.src);
         playerFlame.appendChild(flamePic);
 
@@ -139,7 +139,7 @@ function createPlayerRow(item, dataContainer){
         const fadePic = document.createElement('img');
         fadePic.classList.add('fade-pic');
 
-        fadePic.src = '../Images/Icons/snowflake.png';
+        fadePic.src = 'Images/Icons/snowflake.png';
         playerFade.appendChild(fadePic);
 
         rowDiv.appendChild(playerFade);
@@ -152,7 +152,7 @@ function createPlayerRow(item, dataContainer){
     const infoPic = document.createElement('img');
     infoPic.classList.add('info-pic');
 
-    infoPic.src = '../Images/Icons/info.png';
+    infoPic.src = 'Images/Icons/info.png';
     playerInfo.appendChild(infoPic);
 
     playerInfo.addEventListener('click', function() {
@@ -197,16 +197,16 @@ function editPopup(item){
 
     /*
     const popupPicture = document.createElement('img');
-    popupPicture.src = '../Images/Player_Photos/' + item.first_name + '_' + item.last_name + '.png';
+    popupPicture.src = 'Images/Player_Photos/' + item.first_name + '_' + item.last_name + '.png';
     popupPicture.classList.add('popup-picture');
     */
 
     const closeButton = document.createElement('img');
-    closeButton.src = '../Images/Icons/close.png';
+    closeButton.src = 'Images/Icons/close.png';
     closeButton.classList.add('close-button');
 
     const editButton = document.createElement('img');
-    editButton.src = '../Images/Icons/edit.png';
+    editButton.src = 'Images/Icons/edit.png';
     editButton.classList.add('edit-button');
 
     const badgeContainer = document.createElement('div');
@@ -252,66 +252,66 @@ function editPopup(item){
 function getBadges(item, badgeContainer){
     
     if(item.flame_or_fade == "Flame"){
-        createBadgeWithDescription('../Images/Icons/flames.png', badgeContainer, "This is a player I'm high on, and have been drafting a lot in mocks.")
+        createBadgeWithDescription('Images/Icons/flames.png', badgeContainer, "This is a player I'm high on, and have been drafting a lot in mocks.")
     }
 
     if(item.flame_or_fade == "Fade"){
-        createBadgeWithDescription('../Images/Icons/snowflake.png', badgeContainer, "This is a player I'm fading, and not drafting unless I get them far later than their ADP.");
+        createBadgeWithDescription('Images/Icons/snowflake.png', badgeContainer, "This is a player I'm fading, and not drafting unless I get them far later than their ADP.");
     }
     if(item.breakout == "Yes"){
-        createBadgeWithDescription('../Images/Icons/nuclear-power.png', badgeContainer, "Candidate for a breakout season this year. Extremely high upside.");
+        createBadgeWithDescription('Images/Icons/nuclear-power.png', badgeContainer, "Candidate for a breakout season this year. Extremely high upside.");
     }   
 
     if(item.recent_injury == "Yes"){
-        createBadgeWithDescription('../Images/Icons/red-cross.png', badgeContainer, "Player who suffered an injury recently.");
+        createBadgeWithDescription('Images/Icons/red-cross.png', badgeContainer, "Player who suffered an injury recently.");
     }
 
     if(item.new_coach == "Yes"){
-        createBadgeWithDescription('../Images/Icons/coach.png', badgeContainer, "Player who is heading into the season with a new coach / OC.");
+        createBadgeWithDescription('Images/Icons/coach.png', badgeContainer, "Player who is heading into the season with a new coach / OC.");
     }
 
     if(item.new_team == "Yes"){
-        createBadgeWithDescription('../Images/Icons/moving-truck.png', badgeContainer, "A player who is playing for a new team this season.");
+        createBadgeWithDescription('Images/Icons/moving-truck.png', badgeContainer, "A player who is playing for a new team this season.");
     }
 
     if(item.hero == "Yes"){
-        createBadgeWithDescription('../Images/Icons/hero.png', badgeContainer, "This player is the number one option in their offense, regardless of the situation.");
+        createBadgeWithDescription('Images/Icons/hero.png', badgeContainer, "This player is the number one option in their offense, regardless of the situation.");
     }
 
     if(item.expensive == "Yes"){
-        createBadgeWithDescription('../Images/Icons/pricey.png', badgeContainer, "This player is expensive at his draft position.");
+        createBadgeWithDescription('Images/Icons/pricey.png', badgeContainer, "This player is expensive at his draft position.");
     }
 
     if(item.easy_division == "Yes"){
-        createBadgeWithDescription('../Images/Icons/cupcake.png',badgeContainer, "This player plays in a weak division.")
+        createBadgeWithDescription('Images/Icons/cupcake.png',badgeContainer, "This player plays in a weak division.")
     }
     
     if(item.difficult_division == "Yes"){
-        createBadgeWithDescription('../Images/Icons/shield.png', badgeContainer, "This player plays in a very competetive division.")
+        createBadgeWithDescription('Images/Icons/shield.png', badgeContainer, "This player plays in a very competetive division.")
     }
 
     if(item.high_powered_o == "Yes"){
-        createBadgeWithDescription('../Images/Icons/nuclear-plant.png', badgeContainer, "This player is apart of high powered offense.");
+        createBadgeWithDescription('Images/Icons/nuclear-plant.png', badgeContainer, "This player is apart of high powered offense.");
     }
 
     if(item.old == "Yes"){
-        createBadgeWithDescription('../Images/Icons/hourglass.png', badgeContainer, "This player is older, and that could be a contributing factor to their output.");
+        createBadgeWithDescription('Images/Icons/hourglass.png', badgeContainer, "This player is older, and that could be a contributing factor to their output.");
     }
 
     if(item.rookie == "Yes"){
-        createBadgeWithDescription('../Images/Icons/rookie.png', badgeContainer, "This player is a rookie.");
+        createBadgeWithDescription('Images/Icons/rookie.png', badgeContainer, "This player is a rookie.");
     }
 
     if(item.ppr_machine == "Yes"){
-        createBadgeWithDescription('../Images/Icons/ppr.png', badgeContainer, "This player is a PPR machine, and excels at catching passes.");
+        createBadgeWithDescription('Images/Icons/ppr.png', badgeContainer, "This player is a PPR machine, and excels at catching passes.");
     }
 
     if(item.big_play == "Yes"){
-        createBadgeWithDescription('../Images/Icons/big_play.png', badgeContainer, "This player has a better chance at creating big plays.");
+        createBadgeWithDescription('Images/Icons/big_play.png', badgeContainer, "This player has a better chance at creating big plays.");
     }
 
     if(item.goal_line == "Yes"){
-        createBadgeWithDescription('../Images/Icons/goal_line.png',badgeContainer, "This player's odds at scoring a touchdown close to the goal line are much higher than most.");
+        createBadgeWithDescription('Images/Icons/goal_line.png',badgeContainer, "This player's odds at scoring a touchdown close to the goal line are much higher than most.");
     }
 
 }
