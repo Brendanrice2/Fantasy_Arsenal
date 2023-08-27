@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html lang = "en">      <!--This is the language the site is in-->
+<head>
+    <meta charset = "UTF-8">
+    <meta name="viewport" content = "width = device-width, intial-scale=1. 0">
+
+    <link href = "../Styles/Edit_Player.css" rel="stylesheet" type="text/css">
+    <title>Fantasy Football 2023 Tier List </title>
+    <script src="https://kit.fontawesome.com/bcbd8af4d2.js" crossorigin="anonymous"></script>
+</head>
+
+
+<body>
+    <header>
+        <!-- Logo for website-->
+        <div class = "logo">Edit Player</div>
+        <!--Hamburger looking menu-->
+        <div class = "view_items">
+            <div class = "line"></div>
+            <div class = "line"></div>
+            <div class = "line"></div>
+        </div>
+
+        <!--Options within the menu-->
+        <nav class = "nav-bar">
+            <ul>
+                <li>
+                    <a href="../index.html">Tier List</a>
+                </li>
+                <li>
+                    <a href = "Create_Player.html">Create</a>
+                </li>
+                <li>
+                    <a href="" class = "active">Edit</a>
+                </li>
+                <li>
+                    <a href="Stacks.html">Stacks</a>
+                </li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <script>
+        view_items = document.querySelector(".view_items");
+        view_items.onclick = function(){
+            navBar = document.querySelector(".nav-bar");
+            navBar.classList.toggle("active");
+        }
+    </script>
+
+
+    <form action="https://sheetdb.io/api/v1/fc74l8c82eqve" method = "post" id = "sheetdb-form">
+
+        <div>
+            <input type="text" class ="name" id = "first_name" name="data[first_name]" placeholder="First Name" required>
+
+            <input type="text" class ="name" id = "last_name" name="data[last_name]" placeholder="Last Name" required>
+        </div>
+        <br>
+        <div class = "radio-button">
+            
+            <input type="radio" id = "position-qb" name="data[position]" value="QB" required/>
+            <label for="position-qb">QB</label>
+
+            <input type="radio" id = "position-rb" name="data[position]" value="RB"/>
+            <label for="position-rb">RB</label>
+
+            <input type="radio" id = "position-wr" name="data[position]" value="WR"/>
+            <label for="position-wr">WR</label>
+
+            <input type="radio" id = "position-te" name="data[position]" value="TE" />
+            <label for="position-te">TE</label>
+
+            <input type="radio" id = "position-d/st" name="data[position]" value="D/ST"/>
+            <label for="position-d/st">D/ST</label>
+
+            <input type="radio" id = "position-k" name="data[position]" value="K"/>
+            <label for="position-k">K</label>
+
+        </div>
+        <br>
+        <div>
+            <input type="text" class = "numbers" id="rank" name = "data[rank]" placeholder="Rank" required/>
+
+            <input type="text" class = "numbers" id="position_rank" name = "data[position_rank]" placeholder="Position Rank" required/>
+
+            <input type="text" class = "numbers" id="adp" name = "data[adp]" placeholder="ADP" required/>
+
+            <input type="text" class = "numbers" id="tier" name = "data[tier]" placeholder = "Tier" required/>
+        </div>
+        <div class = "number-label-div">
+            <label for="rank" class = "number-labels">Rank</label>
+            <label for="position_rank" class = "number-labels">Position Rank</label>
+            <label for="adp" class = "number-labels">ADP</label>
+            <label for="tier" class = "number-labels">Tier</label>
+        </div>
+        <br>
+        <div>
+            <textarea type="text" id="summary" name ="data[summary]" placeholder="Summary" rows="5" cols="80"></textarea>
+        </div>
+        <span class = "badges-head">Badges</span>
+        <div class = "badge-container">
+            <div class="badge-button">
+                <input type = "radio" id = "flame" name = "data[flame_or_fade]" value = "Flame"/>
+                <label for="flame">
+                    <img src ="../Images/Icons/flames.png" class="badge-label"/>
+                </label>
+
+                <input type = "radio" id = "fade" name = "data[flame_or_fade]" value = "Fade"/>
+                <label for="fade">
+                    <img src ="../Images/Icons/snowflake.png" class="badge-label"/>
+                </label>
+
+                <input type = "radio" id = "breakout" name = "data[breakout]" value = "Yes"/>
+                <label for="breakout">
+                    <img src ="../Images/Icons/nuclear-power.png" class = "badge-label"/>
+                </label>
+
+                <input type = "radio" id = "recent_injury" name = "data[recent_injury]" value = "Yes"/>
+                <label for="recent_injury">
+                    <img src ="../Images/Icons/red-cross.png" class = "badge-label"/>
+                </label>
+            </div>
+
+            <div class = "badge-button">
+                <input type = "radio" id = "new_coach" name = "data[new_coach]" value = "Yes"/>
+                <label for="new_coach">
+                    <img src ="../Images/Icons/coach.png" class = "badge-label"/>
+                </label>
+
+                <input type = "radio" id = "new_team" name = "data[new_team]" value = "Yes"/>
+                <label for="new_team">
+                    <img src ="../Images/Icons/moving-truck.png" class = "badge-label"/>
+                </label>
+
+                <input type = "radio" id = "hero" name = "data[hero]" value = "Yes"/>
+                <label for="hero">
+                    <img src ="../Images/Icons/hero.png" class = "badge-label"/>
+                </label>
+
+                <input type = "radio" id = "expensive" name = "data[expensive]" value = "Yes"/>
+                <label for="expensive">
+                    <img src ="../Images/Icons/pricey.png" class = "badge-label"/>
+                </label>
+
+            </div>
+
+            <div class = "badge-button">
+                <input type = "radio" id = "old" name = "data[old]" value = "Yes"/>
+                <label for="old">
+                    <img src ="../Images/Icons/hourglass.png" class = "badge-label"/>
+                </label>
+
+                <input type = "radio" id = "difficult_division" name = "data[difficult_division]" value = "Yes"/>
+                <label for="difficult_division">
+                    <img src ="../Images/Icons/shield.png" class = "badge-label"/>
+                </label>
+
+                <input type = "radio" id = "easy_division" name = "data[easy_division]" value = "Yes"/>
+                <label for="easy_division">
+                    <img src ="../Images/Icons/cupcake.png" class = "badge-label"/>
+                </label>
+
+                <input type = "radio" id = "high_powered_o" name = "data[high_powered_o]" value = "Yes"/>
+                <label for="high_powered_o">
+                    <img src ="../Images/Icons/nuclear-plant.png" class = "badge-label"/>
+                </label>
+
+            </div>
+
+            <div class = "badge-button">
+                <input type = "radio" id = "rookie" name = "data[rookie]" value = "Yes"/>
+                <label for="rookie">
+                    <img src ="../Images/Icons/rookie.png" class = "badge-label"/>
+                </label>
+
+                <input type = "radio" id = "ppr_machine" name = "data[ppr_machine]" value = "Yes"/>
+                <label for="ppr_machine">
+                    <img src ="../Images/Icons/ppr.png" class = "badge-label"/>
+                </label>
+
+                <input type = "radio" id = "big_play" name = "data[big_play]" value = "Yes"/>
+                <label for="big_play">
+                    <img src ="../Images/Icons/big_play.png" class = "badge-label"/>
+                </label>
+
+                <input type = "radio" id = "goal_line" name = "data[goal_line]" value = "Yes"/>
+                <label for="goal_line">
+                    <img src ="../Images/Icons/goal_line.png" class = "badge-label"/>
+                </label>
+            </div>
+
+        </div>
+        <br>
+        
+        <div class = "editBtn">
+            
+            <button id = "btn" type = "submit" class = "editNewPlayerBtn">Edit Player</button>
+        </div>
+        <div id ="msg">
+            <pre></pre>
+        </div>
+    </form>
+
+    <script>
+
+        function getQueryParam(name){
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        function checkPosition(position){
+            const idStr = "position-"+position;
+            positionId = idStr.toLowerCase();
+            document.getElementById(positionId).checked = true;
+
+        }
+
+        function setBadges(playerData){
+            if (playerData.flame_or_fade === "Flame"){document.getElementById('flame').checked = true;}
+            if (playerData.flame_or_fade === "Fade"){document.getElementById('fade').checked = true;}
+            if (playerData.breakout === "Yes"){document.getElementById('breakout').checked = true;}
+            if (playerData.recent_injury === "Yes"){document.getElementById('recent_injury').checked = true;}
+            if (playerData.new_coach === "Yes"){document.getElementById('new_coach').checked = true;}
+            if (playerData.new_team === "Yes"){document.getElementById('new_team').checked = true;}
+            if (playerData.hero === "Yes"){document.getElementById('hero').checked = true;}
+            if (playerData.expensive === "Yes"){document.getElementById('expensive').checked = true;}
+            if (playerData.easy_division === "Yes"){document.getElementById('easy_division').checked = true;}
+            if (playerData.difficult_division === "Yes"){document.getElementById('difficult_division').checked = true;}
+            if (playerData.high_powered_o === "Yes"){document.getElementById('high_powered_o').checked = true;}
+            if (playerData.old === "Yes"){document.getElementById('old').checked = true;}
+            if (playerData.rookie === "Yes"){document.getElementById('rookie').checked = true;}
+            if (playerData.ppr_machine === "Yes"){document.getElementById('ppr_machine').checked = true;}
+            if(playerData.big_play === "Yes"){document.getElementById('big_play').checked = true;}
+            if(playerData.goal_line === "Yes"){document.getElementById('goal_line').checked = true;}
+        }   
+
+        function getSelectedBadges() {
+            const selectedBadges = {};
+        
+            if (document.getElementById('flame').checked) {
+                selectedBadges.flame_or_fade = 'Flame';
+            }
+            if (document.getElementById('fade').checked) {
+                selectedBadges.flame_or_fade = 'Fade';
+            }
+            if (document.getElementById('breakout').checked) {
+                selectedBadges.breakout = 'Yes';
+            }
+            if (document.getElementById('recent_injury').checked) {
+                selectedBadges.recent_injury = 'Yes';
+            }
+            if (document.getElementById('new_coach').checked) {
+                selectedBadges.new_coach = 'Yes';
+            }
+            if (document.getElementById('new_team').checked) {
+                selectedBadges.new_team = 'Yes';
+            }
+            if (document.getElementById('hero').checked) {
+                selectedBadges.hero = 'Yes';
+            }
+            if (document.getElementById('expensive').checked) {
+                selectedBadges.expensive = 'Yes';
+            }
+            if (document.getElementById('easy_division').checked) {
+                selectedBadges.easy_division = 'Yes';
+            }
+            if (document.getElementById('difficult_division').checked) {
+                selectedBadges.difficult_division = 'Yes';
+            }
+            if (document.getElementById('high_powered_o').checked) {
+                selectedBadges.high_powered_o = 'Yes';
+            }
+            if (document.getElementById('old').checked){
+                selectedBadges.old = 'Yes';
+            }
+            if(document.getElementById('rookie').checked){
+                selectedBadges.rookie = 'Yes';
+            }
+            if (document.getElementById('ppr_machine').checked) {
+                selectedBadges.ppr_machine = 'Yes';
+            }
+            if (document.getElementById('big_play').checked){
+                selectedBadges.big_play = 'Yes';
+            }
+            if(document.getElementById('goal_line').checked){
+                selectedBadges.goal_line = 'Yes';
+            }
+        
+            return selectedBadges;
+        }
+
+        document.addEventListener("DOMContentLoaded", function(){
+            const thisId = getQueryParam('id');
+
+            const editURL = `https://sheetdb.io/api/v1/fc74l8c82eqve?/Player%20DB/id=${encodeURIComponent(thisId)}`;
+            //const editURL = `https://sheetdb.io/api/v1/fc74l8c82eqve/Player%20DB?rank=${encodeURIComponent(thisPlayerRank)}`;
+
+            //const editURL = `https://sheetdb.io/api/v1/fc74l8c82eqve`;
+            fetch(editURL)
+
+                .then(response => response.json())
+                .then(data => {
+
+                    const playerData = data[thisId-1];
+                    
+                    document.getElementById("first_name").value = playerData.first_name;
+                    document.getElementById("last_name").value = playerData.last_name;
+                    checkPosition(playerData.position);
+                    document.getElementById("rank").value = playerData.rank;
+                    document.getElementById("position_rank").value = playerData.position_rank;
+                    document.getElementById("adp").value = playerData.adp;
+                    document.getElementById("tier").value = playerData.tier;
+                    document.getElementById("summary").value = playerData.summary;
+                    setBadges(playerData);
+                    //event listener for update button
+                    const playerForm = document.getElementById("sheetdb-form");
+                    playerForm.addEventListener("submit", function(event){
+                        event.preventDefault();
+                        
+                        const selectedBadges = getSelectedBadges();
+                        console.log(selectedBadges);
+
+                        // Gathering updated form data
+                        //need to add selected position in this code
+                        const updatedData = {
+                            first_name: document.getElementById("first_name").value,
+                            last_name: document.getElementById("last_name").value,
+                            position: playerData.position, // Implement getSelectedPosition() based on your logic
+                            rank: document.getElementById("rank").value,
+                            position_rank: document.getElementById("position_rank").value,
+                            adp: document.getElementById("adp").value,
+                            tier: document.getElementById("tier").value,
+                            summary: document.getElementById("summary").value,
+                            // Assuming you have a function to get the selected badge
+                            ...getSelectedBadges()
+                        };
+                    
+                        // Update player data via API
+                        fetch(`https://sheetdb.io/api/v1/fc74l8c82eqve/id/${encodeURIComponent(thisId)}`, {
+                            method: 'PATCH', // Assuming your API supports PUT requests for updating data
+                            headers: {
+                                'Accept':'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(updatedData)
+                        })
+                
+                        .then(response => response.json())
+                        .then((updatedData) => {
+                            console.log(updatedData);
+
+                            window.location.href = 'Fantasy_Tier_List.html';
+                            
+                        })
+                        .catch(error=>{
+                            console.error("Error updating data:", error);
+                        });
+                    });
+                })
+                .catch(error=>{
+                    console.error("error fetching:",error);
+                });
+            });
+    </script>
+
+</body>

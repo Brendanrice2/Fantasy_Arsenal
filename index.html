@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html lang = "en">      <!--This is the language the site is in-->
+<head>
+    <meta charset = "UTF-8">
+    <meta name="viewport" content = "width = device-width, intial-scale=1. 0">
+
+    <link href = "Styles/Fantasy_Tier_List.css" rel="stylesheet" type="text/css">
+    <title>Fantasy Football 2023 Tier List </title>
+    <script src="https://kit.fontawesome.com/bcbd8af4d2.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <!-- Logo for website-->
+        <div class = "logo">Fantasy Football 2023 Tier List</div>
+        <!--Hamburger looking menu-->
+        <div class = "view_items">
+            <div class = "line"></div>
+            <div class = "line"></div>
+            <div class = "line"></div>
+        </div>
+
+        <!--Options within the menu-->
+        <nav class = "nav-bar">
+            <ul>
+                <li>
+                    <a href="" class = "active">Tier List</a>
+                </li>
+                <li>
+                    <a href = "Pages/Create_Player.html">Create</a>
+                </li>
+                <li>
+                    <a href="Pages/Edit_Player.html">Edit</a>
+                </li>
+                <li>
+                    <a href="Pages/Stacks.html">Stacks</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <script>
+        view_items = document.querySelector(".view_items");
+        view_items.onclick = function(){
+            navBar = document.querySelector(".nav-bar");
+            navBar.classList.toggle("active");
+        }
+    </script>
+
+    <div id = "all-containers" class = "all-containers">
+            <input type = "text" id="searchPlayer" placeholder = "Search">
+            <div id = "player_container_1" class = "player_container">
+                <label for="player_container_1" class ="tier-label-1">1</label>
+            </div>
+            <div id = "player_container_2" class = "player_container">
+                <label for="player_container_1" class ="tier-label-2">2</label>
+            </div>
+            <div id = "player_container_3" class = "player_container">
+                <label for="player_container_1" class ="tier-label-3">3</label>
+            </div>
+            <div id = "player_container_4" class = "player_container">
+                <label for="player_container_1" class ="tier-label-4">4</label>
+            </div>
+            <div id = "player_container_5" class = "player_container">
+                <label for="player_container_1" class ="tier-label-5">5</label>
+            </div>
+            <div id = "player_container_6" class = "player_container">
+                <label for="player_container_1" class ="tier-label-6">6</label>
+            </div>
+            <div id = "player_container_7" class = "player_container">
+                <label for="player_container_1" class ="tier-label-7">7</label>
+            </div>
+            <div id = "player_container_8" class = "player_container">
+                <label for="player_container_1" class ="tier-label-8">8</label>
+            </div>
+            <div id = "player_container_9" class = "player_container">
+                <label for="player_container_1" class ="tier-label-9">9</label>
+            </div>
+            <div id = "player_container_10" class = "player_container">
+                <label for="player_container_1" class ="tier-label-10">10</label>
+            </div>
+            <div id = "player-popup" class = "player-popup" ></div>
+            <script src="../Scripts/players.js"></script>
+    </div>
+    
+    <!--
+    <form id = "form" ><input type = "text" id = "search" class = "search" placeholder = "Search for a player"></form>
+    -->
+    <!--
+    <a href="/Fantasy_Football_2023.html">
+        <img src = "C:\Internships\Portfolio\Projects\Fantasy Football\fantasy_football.png" alt = "" style = "width:200px;height:200px">
+    </a>
+-->
+
+    <a href="https://www.flaticon.com/free-icons/flames" title="flames icons">Flames icons created by Flat Icons - Flaticon</a>
+    <br>
+    <a href="https://www.flaticon.com/free-icons/snow" title="snow icons">Snow icons created by Freepik - Flaticon</a>
+    <br>
+    <a href="https://www.flaticon.com/free-icons/info" title="info icons">Info icons created by Plastic Donut - Flaticon</a>
+    <br>
+    <a href="https://www.flaticon.com/free-icons/close" title="close icons">Close icons created by inkubators - Flaticon</a>
+    <br>
+    <a href="https://www.flaticon.com/free-icons/dessert" title="dessert icons">Dessert icons created by Freepik - Flaticon</a>
+    <br>
+    <a href="https://www.flaticon.com/free-icons/coach" title="coach icons">Coach icons created by Futuer - Flaticon</a>
+    <br>
+    <a href="https://www.flaticon.com/free-icons/edit" title="edit icons">Edit icons created by Kiranshastry - Flaticon</a>
+    <br>
+    <a href="https://www.flaticon.com/free-icons/superhero" title="superhero icons">Superhero icons created by Freepik - Flaticon</a>
+    <br>
+    <a href="https://www.flaticon.com/free-icons/sand-clock" title="sand clock icons">Sand clock icons created by Freepik - Flaticon</a>
+    <br>
+    <a href="https://www.flaticon.com/free-icons/truck" title="truck icons">Truck icons created by Freepik - Flaticon</a>
+    <br>
+    <a href="https://www.flaticon.com/free-icons/nuclear" title="nuclear icons">Nuclear icons created by Konkapp - Flaticon</a>
+    <br>
+    <a href="https://www.flaticon.com/free-icons/nuclear" title="nuclear icons">Nuclear icons created by Freepik - Flaticon</a>
+    <br>
+    <a href="https://www.flaticon.com/free-icons/coin" title="coin icons">Coin icons created by Freepik - Flaticon</a>
+    <br>
+    <a href="https://www.flaticon.com/free-icons/red-cross" title="red cross icons">Red cross icons created by Freepik - Flaticon</a>
+    <br>
+    <a href="https://www.flaticon.com/free-icons/sword" title="sword icons">Sword icons created by Freepik - Flaticon</a>
+`   <br>
+    <a href="https://www.flaticon.com/free-icons/letter-r" title="letter r icons">Letter r icons created by Rakib Hassan Rahim - Flaticon</a>
+    <br>
+    <a href="https://www.flaticon.com/free-icons/magnet" title="magnet icons">Magnet icons created by Freepik - Flaticon</a>
+    <br>
+    <a href="https://www.flaticon.com/free-icons/inches" title="inches icons">Inches icons created by smashingstocks - Flaticon</a>
+    <br>
+    <a href="https://www.flaticon.com/free-icons/space-shuttle" title="space shuttle icons">Space shuttle icons created by Freepik - Flaticon</a>
+</body>
+
+
+
+</html>

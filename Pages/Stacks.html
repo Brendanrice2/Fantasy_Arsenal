@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html lang = "en">      <!--This is the language the site is in-->
+<head>
+    <meta charset = "UTF-8">
+    <meta name="viewport" content = "width = device-width, intial-scale=1. 0">
+
+    <link href = "../Styles/Stacks.css" rel="stylesheet" type="text/css">
+    <title>Fantasy Football 2023 Tier List </title>
+    <script src="https://kit.fontawesome.com/bcbd8af4d2.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <!-- Logo for website-->
+        <div class = "logo">Stacks Ranked</div>
+        <!--Hamburger looking menu-->
+        <div class = "view_items">
+            <div class = "line"></div>
+            <div class = "line"></div>
+            <div class = "line"></div>
+        </div>
+
+        <!--Options within the menu-->
+        <nav class = "nav-bar">
+            <ul>
+                <li>
+                    <a href="../index.html" class = "active">Tier List</a>
+                </li>
+                <li>
+                    <a href = "Create_Player.html">Create</a>
+                </li>
+                <li>
+                    <a href="Edit_Player.html">Edit</a>
+                </li>
+                <li>
+                    <a href="" class="active">Stacks</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <script>
+        view_items = document.querySelector(".view_items");
+        view_items.onclick = function(){
+            navBar = document.querySelector(".nav-bar");
+            navBar.classList.toggle("active");
+        }
+    </script>
+
+</body>

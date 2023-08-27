@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html lang = "en">      <!--This is the language the site is in-->
+<head>
+    <meta charset = "UTF-8">
+    <meta name="viewport" content = "width = device-width, intial-scale=1. 0">
+
+    <link href = "../Styles/Create_Player.css" rel="stylesheet" type="text/css">
+    <title>Fantasy Football 2023 Tier List </title>
+    <script src="https://kit.fontawesome.com/bcbd8af4d2.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <!-- Logo for website-->
+        <div class = "logo">Create Player</div>
+        <!--Hamburger looking menu-->
+        <div class = "view_items">
+            <div class = "line"></div>
+            <div class = "line"></div>
+            <div class = "line"></div>
+        </div>
+
+        <!--Options within the menu-->
+        <nav class = "nav-bar">
+            <ul>
+                <li>
+                    <a href="../index.html">Tier List</a>
+                </li>
+                <li>
+                    <a href = "" class = "active">Create</a>
+                </li>
+                <li>
+                    <a href="Edit_Player.html">Edit</a>
+                </li>
+                <li>
+                    <a href="Stacks.html">Stacks</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--Nav bar script-->
+    <script>
+        view_items = document.querySelector(".view_items");
+        view_items.onclick = function(){
+            navBar = document.querySelector(".nav-bar");
+            navBar.classList.toggle("active");
+        }
+    </script>
+
+    <form action="https://sheetdb.io/api/v1/fc74l8c82eqve" method = "post" id = "sheetdb-form">
+
+        <div>
+            <input type="text" class ="name" id = "first_name" name="data[first_name]" placeholder="First Name" required>
+
+            <input type="text" class ="name" id = "last_name" name="data[last_name]" placeholder="Last Name" required>
+        </div>
+        <br>
+        <div class = "radio-button">
+            
+            <input type="radio" id = "position-qb" name="data[position]" value="QB" required/>
+            <label for="position-qb">QB</label>
+
+            <input type="radio" id = "position-rb" name="data[position]" value="RB"/>
+            <label for="position-rb">RB</label>
+
+            <input type="radio" id = "position-wr" name="data[position]" value="WR"/>
+            <label for="position-wr">WR</label>
+
+            <input type="radio" id = "position-te" name="data[position]" value="TE" />
+            <label for="position-te">TE</label>
+
+            <input type="radio" id = "position-d/st" name="data[position]" value="D/ST"/>
+            <label for="position-d/st">D/ST</label>
+
+            <input type="radio" id = "position-k" name="data[position]" value="K"/>
+            <label for="position-k">K</label>
+
+        </div>
+        <br>
+        <div>
+            <input type="text" class = "numbers" id="rank" name = "data[rank]" placeholder="Rank" required/>
+
+            <input type="text" class = "numbers" id="position_rank" name = "data[position_rank]" placeholder="Position Rank" required/>
+
+            <input type="text" class = "numbers" id="adp" name = "data[adp]" placeholder="ADP" required/>
+
+            <input type="text" class = "numbers" id="tier" name = "data[tier]" placeholder = "Tier" required/>
+        </div>
+        <br>
+        <div>
+            <textarea type="text" id="summary" name ="data[summary]" placeholder="Summary" rows="5" cols="80"></textarea>
+        </div>
+        <span class = "badges-head">Badges</span>
+        <div class = "badge-container">
+            <div class="badge-button">
+                <input type = "radio" id = "flame" name = "data[flame_or_fade]" value = "Flame"/>
+                <label for="flame">
+                    <img src ="../Images/Icons/flames.png" class="badge-label"/>
+                </label>
+
+                <input type = "radio" id = "fade" name = "data[flame_or_fade]" value = "Fade"/>
+                <label for="fade">
+                    <img src ="../Images/Icons/snowflake.png" class="badge-label"/>
+                </label>
+
+                <input type = "radio" id = "breakout" name = "data[breakout]" value = "Yes"/>
+                <label for="breakout">
+                    <img src ="../Images/Icons/nuclear-power.png" class = "badge-label"/>
+                </label>
+
+                <input type = "radio" id = "recent_injury" name = "data[recent_injury]" value = "Yes"/>
+                <label for="recent_injury">
+                    <img src ="../Images/Icons/red-cross.png" class = "badge-label"/>
+                </label>
+            </div>
+
+            <div class = "badge-button">
+                <input type = "radio" id = "new_coach" name = "data[new_coach]" value = "Yes"/>
+                <label for="new_coach">
+                    <img src ="../Images/Icons/coach.png" class = "badge-label"/>
+                </label>
+
+                <input type = "radio" id = "new_team" name = "data[new_team]" value = "Yes"/>
+                <label for="new_team">
+                    <img src ="../Images/Icons/moving-truck.png" class = "badge-label"/>
+                </label>
+
+                <input type = "radio" id = "hero" name = "data[hero]" value = "Yes"/>
+                <label for="hero">
+                    <img src ="../Images/Icons/hero.png" class = "badge-label"/>
+                </label>
+
+                <input type = "radio" id = "expensive" name = "data[expensive]" value = "Yes"/>
+                <label for="expensive">
+                    <img src ="../Images/Icons/pricey.png" class = "badge-label"/>
+                </label>
+
+            </div>
+
+            <div class = "badge-button">
+                <input type = "radio" id = "old" name = "data[old]" value = "Yes"/>
+                <label for="old">
+                    <img src ="../Images/Icons/hourglass.png" class = "badge-label"/>
+                </label>
+
+                <input type = "radio" id = "difficult_division" name = "data[difficult_division]" value = "Yes"/>
+                <label for="new_team">
+                    <img src ="../Images/Icons/shield.png" class = "badge-label"/>
+                </label>
+
+                <input type = "radio" id = "easy_division" name = "data[easy_division]" value = "Yes"/>
+                <label for="hero">
+                    <img src ="../Images/Icons/cupcake.png" class = "badge-label"/>
+                </label>
+
+                <input type = "radio" id = "high_powered_o" name = "data[high_powered_o]" value = "Yes"/>
+                <label for="expensive">
+                    <img src ="../Images/Icons/nuclear-plant.png" class = "badge-label"/>
+                </label>
+
+            </div>
+
+            <div class = "badge-button">
+                <input type = "radio" id = "rookie" name = "data[rookie]" value = "Yes"/>
+                <label for="rookie">
+                    <img src ="../Images/Icons/rookie.png" class = "badge-label"/>
+                </label>
+
+                <input type = "radio" id = "ppr_machine" name = "data[ppr_machine]" value = "Yes"/>
+                <label for="ppr_machine">
+                    <img src ="../Images/Icons/ppr.png" class = "badge-label"/>
+                </label>
+
+                <input type = "radio" id = "big_play" name = "data[big_play]" value = "Yes"/>
+                <label for="big_play">
+                    <img src ="../Images/Icons/big_play.png" class = "badge-label"/>
+                </label>
+
+                <input type = "radio" id = "goal_line" name = "data[goal_line]" value = "Yes"/>
+                <label for="goal_line">
+                    <img src ="../Images/Icons/goal_line.png" class = "badge-label"/>
+                </label>
+            </div>
+
+        </div>
+        <br>
+        
+        <div class = "createBtn">
+            
+            <button id = "btn" type = "submit" class = "addNewPlayerBtn">Create Player</button>
+        </div>
+        <div id ="msg">
+            <pre></pre>
+        </div>
+    </form>
+
+
+    <!--Script to post data to sheets-->
+    <script>
+        var form = document.getElementById('sheetdb-form');
+        form.addEventListener("submit", e => {
+            e.preventDefault();
+            fetch(form.action,{
+                method : "POST",
+                body: new FormData(document.getElementById("sheetdb-form")),
+            }).then(
+                response => response.json()
+            ).then((html) => {
+                //we can put anything here, such as going to next page
+                console.log("Added to API");
+                form.reset();
+            });
+        });
+
+    </script>
+</body>
+
+</html>
