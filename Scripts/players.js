@@ -375,3 +375,6 @@ const observer = new MutationObserver(function(mutations){
 
 
 observer.observe(document.body, {childList: true, subtree: true});
+
+const testSpan = document.createElement('span');
+testSpan.textContent = "TEST";
