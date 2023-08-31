@@ -151,7 +151,6 @@ function createPlayerRow(item, dataContainer){
 
     const infoPic = document.createElement('img');
     infoPic.classList.add('info-pic');
-
     infoPic.src = 'Images/Icons/info.png';
     playerInfo.appendChild(infoPic);
 
@@ -159,11 +158,24 @@ function createPlayerRow(item, dataContainer){
         editPopup(item);
     });
 
+    const closeDiv = document.createElement('div');
+    closeDiv.classList.add('close-div');
+
+    const closeRow = document.createElement('img');
+    closeRow.classList.add('close-row');
+    closeRow.src = 'Images/Icons/close.png';
+    closeDiv.appendChild(closeRow);
+
+    closeDiv.addEventListener('click', function(){
+        
+    });
+
     rowDiv.appendChild(playerInfo);
     //rowDiv.appendChild(playerPic);
     rowDiv.appendChild(playerName);
     rowDiv.appendChild(playerRank);
     rowDiv.appendChild(playerPositionRank);
+    rowDiv.appendChild(closeDiv);
 
     dataContainer.appendChild(rowDiv);
 
@@ -221,10 +233,14 @@ function editPopup(item){
     });
 
     editButton.addEventListener('click', function(){
-        //const thisRank = popupRank.textContent;
-        //window.location.href = `Edit_Player.html?rank=${encodeURIComponent(thisRank)}`;
         const thisId = item.id;
-        window.location.href = `Edit_Player.html?id=${encodeURIComponent(thisId)}`;
+        const editPW = prompt('Enter password:');
+        if (editPW === correctPassword){
+            window.location.href = `Pages/Edit_Player.html?id=${encodeURIComponent(thisId)}`;
+        }
+        else{
+            alert("You don't have access to this feature.");
+        }
     });
 
     //badges, as well as badge popup description
@@ -362,6 +378,7 @@ function initializeSearch(){
     });
 }
 
+const correctPassword = "The Rain Song";
 //function call
 fetchDataFromSheetDB();
 
@@ -376,5 +393,19 @@ const observer = new MutationObserver(function(mutations){
 
 observer.observe(document.body, {childList: true, subtree: true});
 
-const testSpan = document.createElement('span');
-testSpan.textContent = "TEST";
+function checkPassword(page){
+    const passwordInput = prompt('Enter the password:');
+    if(passwordInput === correctPassword){
+        redirectToPage(page);
+    }
+    else{
+        alert("You don't have authority to access this feature");
+    }
+}
+
+
+function redirectToPage(page){
+    if(page === 'create'){
+        window.location.href = "Pages/Create_Player.html";
+    }
+}
