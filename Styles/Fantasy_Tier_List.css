@@ -305,6 +305,7 @@ input[type=radio] {
   right: 23%;
   width: 10%;
   height: 10%;
+  cursor: pointer;
 }
 
 .close-row {

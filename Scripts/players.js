@@ -167,7 +167,10 @@ function createPlayerRow(item, dataContainer){
     closeDiv.appendChild(closeRow);
 
     closeDiv.addEventListener('click', function(){
-        
+        while (rowDiv.firstChild){
+            rowDiv.style.display = 'none';
+            rowDiv.removeChild(rowDiv.firstChild);
+        }
     });
 
     rowDiv.appendChild(playerInfo);
