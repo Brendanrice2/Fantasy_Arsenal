@@ -299,6 +299,19 @@ input[type=radio] {
   z-index: 2;
 }
 
+.close-div {
+  position: absolute;
+  bottom: 22%;
+  right: 23%;
+  width: 10%;
+  height: 10%;
+}
+
+.close-row {
+  width: 25px;
+  height: 25px;
+}
+
 .info-pic:hover {
   cursor: pointer;
 }
@@ -691,6 +704,20 @@ input[type=radio] {
 .row_10 {
   border-color: gray;
   background-color: white;
+}
+
+.attribute-box {
+  background-color: gray;
+  width: 250px;
+  position: absolute;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.attribution {
+  color: black;
+  margin-top: 2px;
+  font-size: 8pt;
 }
 
 main {
