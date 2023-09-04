@@ -45,39 +45,48 @@
     </script>
 
     <div id = "all-containers" class = "all-containers">
+        <div class = "filter-box">
             <input type = "text" id="searchPlayer" placeholder = "Search">
-            <div id = "player_container_1" class = "player_container">
-                <label for="player_container_1" class ="tier-label-1">1</label>
-            </div>
-            <div id = "player_container_2" class = "player_container">
-                <label for="player_container_1" class ="tier-label-2">2</label>
-            </div>
-            <div id = "player_container_3" class = "player_container">
-                <label for="player_container_1" class ="tier-label-3">3</label>
-            </div>
-            <div id = "player_container_4" class = "player_container">
-                <label for="player_container_1" class ="tier-label-4">4</label>
-            </div>
-            <div id = "player_container_5" class = "player_container">
-                <label for="player_container_1" class ="tier-label-5">5</label>
-            </div>
-            <div id = "player_container_6" class = "player_container">
-                <label for="player_container_1" class ="tier-label-6">6</label>
-            </div>
-            <div id = "player_container_7" class = "player_container">
-                <label for="player_container_1" class ="tier-label-7">7</label>
-            </div>
-            <div id = "player_container_8" class = "player_container">
-                <label for="player_container_1" class ="tier-label-8">8</label>
-            </div>
-            <div id = "player_container_9" class = "player_container">
-                <label for="player_container_1" class ="tier-label-9">9</label>
-            </div>
-            <div id = "player_container_10" class = "player_container">
-                <label for="player_container_1" class ="tier-label-10">10</label>
-            </div>
-            <div id = "player-popup" class = "player-popup" ></div>
-            <script src="Scripts/players.js"></script>
+            <button id = "qb-filter" class = "pos-filter">QB</button>
+            <button id = "rb-filter" class = "pos-filter">RB</button>
+            <button id = "wr-filter" class = "pos-filter">WR</button>
+            <button id = "te-filter" class = "pos-filter">TE</button>
+            <button id = "k-filter" class = "pos-filter">K</button>
+            <button id = "d/st-filter" class = "pos-filter">D/ST</button>
+            <button id = "reset-filter" class = "reset-filter">Reset</button>
+        </div>
+        <div id = "player_container_1" class = "player_container">
+            <label for="player_container_1" class ="tier-label-1">1</label>
+        </div>
+        <div id = "player_container_2" class = "player_container">
+            <label for="player_container_1" class ="tier-label-2">2</label>
+        </div>
+        <div id = "player_container_3" class = "player_container">
+            <label for="player_container_1" class ="tier-label-3">3</label>
+        </div>
+        <div id = "player_container_4" class = "player_container">
+            <label for="player_container_1" class ="tier-label-4">4</label>
+        </div>
+        <div id = "player_container_5" class = "player_container">
+            <label for="player_container_1" class ="tier-label-5">5</label>
+        </div>
+        <div id = "player_container_6" class = "player_container">
+            <label for="player_container_1" class ="tier-label-6">6</label>
+        </div>
+        <div id = "player_container_7" class = "player_container">
+            <label for="player_container_1" class ="tier-label-7">7</label>
+        </div>
+        <div id = "player_container_8" class = "player_container">
+            <label for="player_container_1" class ="tier-label-8">8</label>
+        </div>
+        <div id = "player_container_9" class = "player_container">
+            <label for="player_container_1" class ="tier-label-9">9</label>
+        </div>
+        <div id = "player_container_10" class = "player_container">
+            <label for="player_container_1" class ="tier-label-10">10</label>
+        </div>
+        <div id = "player-popup" class = "player-popup" ></div>
+        <script src="Scripts/players.js"></script>
     </div>
     
     <!--

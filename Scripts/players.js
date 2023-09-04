@@ -111,12 +111,7 @@ function createPlayerRow(item, dataContainer){
     const playerPositionRank = document.createElement('span');
     playerPositionRank.textContent = item.position_rank;
     playerPositionRank.classList.add('position-rank');
-    /*
-    const playerPic = document.createElement('img');
-    playerPic.src = 'Images/Player_Photos/' + item.first_name + '_' + item.last_name + '.png';
-    playerPic.classList.add('player-pic')
-    */
-
+   
     //flame or fade check
     if (item.flame_or_fade == "Flame"){
         const playerFlame = document.createElement('div');
@@ -363,11 +358,50 @@ function createBadgeWithDescription(badgeImageSrc, badgeContainer, description_i
     });
 }
 
-//calling function
+//Functions for filtering players
+
+const correctPassword = "The Rain Song";
+function checkPassword(page){
+    const passwordInput = prompt('Enter the password:');
+    if(passwordInput === correctPassword){
+        redirectToPage(page);
+    }
+    else{
+        alert("You don't have authority to access this feature");
+    }
+}
+
+function redirectToPage(page){
+    if(page === 'create'){
+        window.location.href = "Pages/Create_Player.html";
+    }
+}
+
+
+const observer = new MutationObserver(function(mutations){
+    mutations.forEach(function(mutation){
+        initializeSearch();
+        //positionFilter();
+        
+        addFilters('qb');
+        addFilters('rb');
+        addFilters('wr');
+        addFilters('te');
+        addFilters('k');
+        addFilters('d/st');
+        resetFilter();
+
+    });
+});
+
+observer.observe(document.body, {childList: true, subtree: true});
+
+fetchDataFromSheetDB();
+
 
 function initializeSearch(){
+
     const searchInput = document.getElementById('searchPlayer');
-    //const playerContainers = document.querySelectorAll('.player_container');
     const playerRows = document.querySelectorAll('[class^="row_"]');
 
     searchInput.addEventListener('input', function(){
@@ -381,34 +415,49 @@ function initializeSearch(){
     });
 }
 
-const correctPassword = "The Rain Song";
-//function call
-fetchDataFromSheetDB();
 
-const observer = new MutationObserver(function(mutations){
-    mutations.forEach(function(mutation){
-        if(mutation.addedNodes.length){
-            initializeSearch();
-        }
+function addFilters(positionArg){
+    
+    const playerRows = document.querySelectorAll('[class^="row_"]');
+    const filterString = positionArg + "-filter";
+    const thisButton = document.getElementById(filterString);
+
+    thisButton.addEventListener('click', function(){
+        colorButtons(thisButton);
+        playerRows.forEach(playerRow =>{
+            const playerPosition = playerRow.querySelector('.position-rank').textContent.toLowerCase().substring(0,2);
+            const shouldShow = playerPosition.includes(positionArg);
+            playerRow.style.display = shouldShow ? 'block' : 'none';
+        });
+
     });
-});
+}
 
+function resetFilter(){
 
-observer.observe(document.body, {childList: true, subtree: true});
+    const playerRows = document.querySelectorAll('[class^="row_"]');
+    const resetButton = document.querySelector('reset-filter');
 
-function checkPassword(page){
-    const passwordInput = prompt('Enter the password:');
-    if(passwordInput === correctPassword){
-        redirectToPage(page);
-    }
-    else{
-        alert("You don't have authority to access this feature");
-    }
+    resetButton.addEventListener('click', function(){
+        colorButtons(resetButton);
+        resetButton.style.color = "black";
+        resetButton.style.backgroundColor = "white";
+        playerRows.forEach(playerRow =>{
+            playerRow.style.display = 'block';
+        })
+
+    })
+
+}
+
+function colorButtons(thisButton){
+     const filters = document.querySelectorAll('button[id$="-filter"].pos-filter');
+     filters.forEach(filter => {
+        filter.style.color = "black";
+        filter.style.backgroundColor = "white";
+     })
+     thisButton.style.color = "silver";
+     thisButton.style.backgroundColor = "black";
 }
 
 
-function redirectToPage(page){
-    if(page === 'create'){
-        window.location.href = "Pages/Create_Player.html";
-    }
-}
