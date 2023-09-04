@@ -139,6 +139,10 @@ input[type=radio] {
   padding-bottom: 10px;
 }
 
+.filter-box {
+  margin-top: 10px;
+}
+
 #searchPlayer {
   width: 200px;
   height: 30px;
@@ -150,6 +154,34 @@ input[type=radio] {
   left: 0;
   top: 15%;
   z-index: 9999;
+}
+
+.pos-filter {
+  height: 30px;
+  width: 32px;
+  cursor: pointer;
+  border-width: 0.5pt;
+  border-color: black;
+  background-color: white;
+}
+
+.pos-filter:hover {
+  color: silver;
+  background-color: black;
+}
+
+.reset-filter {
+  height: 30px;
+  width: 36px;
+  cursor: pointer;
+  border-width: 0.5pt;
+  border-color: black;
+  background-color: white;
+}
+
+.reset-filter:hover {
+  color: silver;
+  background-color: black;
 }
 
 .player_container {
@@ -356,18 +388,6 @@ input[type=radio] {
   cursor: pointer;
 }
 
-/*
-.popup-picture{
-    position: absolute;
-    top: 5%;
-    left: 5%;
-    width: 100px;
-    height: 100px;
-    border: 1px solid;
-    border-color: black;
-    border-radius: 3px;
-}
-*/
 .popup-header {
   position: absolute;
   top: 3%;
