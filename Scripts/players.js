@@ -1,4 +1,10 @@
 function fetchDataFromSheetDB(){
+    /**
+     * Function to fetch player data from API, and create base containers as well as
+     * player rows for each player in the fetched data.
+     * 
+     */
+
     const sheetDBApiEndpoint = 'https://sheetdb.io/api/v1/fc74l8c82eqve';
     fetch(sheetDBApiEndpoint)
         .then(response => response.json())
@@ -19,10 +25,6 @@ function fetchDataFromSheetDB(){
 
             if(data.length > 0) {
                 data.forEach(item => {
-                    //Creating a div element
-
-                    //Have check for tiers here
-                    //tier 1 players
     
                     if (item.tier== 1){
                         createPlayerRow(item,dataContainer_1);
@@ -96,9 +98,12 @@ function fetchDataFromSheetDB(){
 
 function createPlayerRow(item, dataContainer){
 
+    /**
+     * Function create a player 'row' (div) for each player in the fetched data.
+     */
+
     const rowDiv = document.createElement('div');
     rowDiv.classList.add('row_' + item.tier);
-    //console.log(item.last_name + "tier: 2")
     
     const playerName = document.createElement('span');
     playerName.textContent = item.first_name + ' ' + item.last_name;
@@ -166,6 +171,7 @@ function createPlayerRow(item, dataContainer){
             rowDiv.style.display = 'none';
             rowDiv.removeChild(rowDiv.firstChild);
         }
+        draftedPlayers.push(rowDiv);
     });
 
     rowDiv.appendChild(playerInfo);
@@ -381,8 +387,6 @@ function redirectToPage(page){
 const observer = new MutationObserver(function(mutations){
     mutations.forEach(function(mutation){
         initializeSearch();
-        //positionFilter();
-        
         addFilters('qb');
         addFilters('rb');
         addFilters('wr');
@@ -391,13 +395,15 @@ const observer = new MutationObserver(function(mutations){
         addFilters('d/st');
         resetFilter();
 
+        undoPick();
+
     });
 });
 
 observer.observe(document.body, {childList: true, subtree: true});
 
+const draftedPlayers = [];
 fetchDataFromSheetDB();
-
 
 function initializeSearch(){
 
@@ -423,7 +429,7 @@ function addFilters(positionArg){
     const thisButton = document.getElementById(filterString);
 
     thisButton.addEventListener('click', function(){
-        colorButtons(thisButton);
+        colorFilters(thisButton, false);
         playerRows.forEach(playerRow =>{
             const playerPosition = playerRow.querySelector('.position-rank').textContent.toLowerCase().substring(0,2);
             const shouldShow = playerPosition.includes(positionArg);
@@ -436,28 +442,47 @@ function addFilters(positionArg){
 function resetFilter(){
 
     const playerRows = document.querySelectorAll('[class^="row_"]');
-    const resetButton = document.querySelector('reset-filter');
+    const resetButton = document.querySelector('.reset-filter');
 
     resetButton.addEventListener('click', function(){
-        colorButtons(resetButton);
-        resetButton.style.color = "black";
-        resetButton.style.backgroundColor = "white";
+        console.log("clicked");
+        colorFilters(resetButton, true);
         playerRows.forEach(playerRow =>{
             playerRow.style.display = 'block';
+            playerRow.querySelectorAll('*').forEach(child => {
+                child.style.display = '';
+            })
         })
-
     })
 
 }
 
-function colorButtons(thisButton){
+function colorFilters(thisButton, reset){
      const filters = document.querySelectorAll('button[id$="-filter"].pos-filter');
+     //set all filters to original colors
      filters.forEach(filter => {
         filter.style.color = "black";
         filter.style.backgroundColor = "white";
      })
-     thisButton.style.color = "silver";
-     thisButton.style.backgroundColor = "black";
+
+     //if not reset, change color of selected button
+     if (reset === false){
+        thisButton.style.color = "silver";
+        thisButton.style.backgroundColor = "black";
+     }
+}
+
+function undoPick(){
+    const undoButton = document.getElementById('undo-button');
+
+    undoButton.addEventListener('click', function(){
+        console.log(draftedPlayers[draftedPlayers.length -1]);
+        const lastPick = (draftedPlayers[draftedPlayers.length - 1]);
+        lastPick.style.display = 'block';
+        lastPick.querySelectorAll('*').forEach(child => {
+            child.style.display = '';
+        })
+    })
 }
 
 
