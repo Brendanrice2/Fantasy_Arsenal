@@ -1,4 +1,10 @@
 function fetchDataFromSheetDB(){
+    /**
+     * Function to fetch player data from API, and create base containers as well as
+     * player rows for each player in the fetched data.
+     * 
+     */
+
     const sheetDBApiEndpoint = 'https://sheetdb.io/api/v1/fc74l8c82eqve';
     fetch(sheetDBApiEndpoint)
         .then(response => response.json())
@@ -19,10 +25,6 @@ function fetchDataFromSheetDB(){
 
             if(data.length > 0) {
                 data.forEach(item => {
-                    //Creating a div element
-
-                    //Have check for tiers here
-                    //tier 1 players
     
                     if (item.tier== 1){
                         createPlayerRow(item,dataContainer_1);
@@ -96,9 +98,16 @@ function fetchDataFromSheetDB(){
 
 function createPlayerRow(item, dataContainer){
 
+    /**
+     * Function create a player 'row' (div) for each player in the fetched data.
+     * 
+     * Params:
+     * - item: Object containing player data
+     * - dataContainer: Container to append the player row to
+     */
+
     const rowDiv = document.createElement('div');
     rowDiv.classList.add('row_' + item.tier);
-    //console.log(item.last_name + "tier: 2")
     
     const playerName = document.createElement('span');
     playerName.textContent = item.first_name + ' ' + item.last_name;
@@ -121,7 +130,6 @@ function createPlayerRow(item, dataContainer){
         flamePic.classList.add('flame-pic');
 
         flamePic.src = 'Images/Icons/flames.png';
-        //removeCheckeredBackground(fire.src);
         playerFlame.appendChild(flamePic);
 
         rowDiv.appendChild(playerFlame);
@@ -166,6 +174,7 @@ function createPlayerRow(item, dataContainer){
             rowDiv.style.display = 'none';
             rowDiv.removeChild(rowDiv.firstChild);
         }
+        draftedPlayers.push(rowDiv);
     });
 
     rowDiv.appendChild(playerInfo);
@@ -176,11 +185,19 @@ function createPlayerRow(item, dataContainer){
     rowDiv.appendChild(closeDiv);
 
     dataContainer.appendChild(rowDiv);
-
-    //createPopup(item, rowDiv);
 }
 
 function editPopup(item){
+
+    /**
+     * Function to edit popup for each player row.
+     * 
+     * Params:
+     * - item: Object containing player data
+     * 
+     * Note:
+     * - Commented out sections using player photos, as to avoid any copyright risk
+     **/
 
     const playerPopup = document.getElementById('player-popup');
     playerPopup.style.display = "unset";
@@ -205,7 +222,7 @@ function editPopup(item){
     popupSummary.textContent = item.summary;
     popupSummary.classList.add('popup-summary');
 
-    /*
+    /* 
     const popupPicture = document.createElement('img');
     popupPicture.src = 'Images/Player_Photos/' + item.first_name + '_' + item.last_name + '.png';
     popupPicture.classList.add('popup-picture');
@@ -265,6 +282,14 @@ function editPopup(item){
 
 function getBadges(item, badgeContainer){
     
+    /**
+     * Function to check player data for badges, and create badges with descriptions.
+     * 
+     * Params:
+     * - item: Object containing player data
+     * - badgeContainer: Container to append badges to
+     */
+
     if(item.flame_or_fade == "Flame"){
         createBadgeWithDescription('Images/Icons/flames.png', badgeContainer, "This is a player I'm high on, and have been drafting a lot in mocks.")
     }
@@ -331,6 +356,16 @@ function getBadges(item, badgeContainer){
 }
 
 function createBadgeWithDescription(badgeImageSrc, badgeContainer, description_input) {
+    
+    /**
+     * Function to create a badge with a description.
+     * 
+     * Params:
+     * - badgeImageSrc: Source / Path of the badge image
+     * - badgeContainer: Container to append the badge to
+     * - description_input: Description of the badge
+     */
+
     const badge = document.createElement('img');
     badge.src = badgeImageSrc;
     badge.classList.add('badge-img');
@@ -358,10 +393,17 @@ function createBadgeWithDescription(badgeImageSrc, badgeContainer, description_i
     });
 }
 
-//Functions for filtering players
-
+// Variable to store correct password
 const correctPassword = "The Rain Song";
+
 function checkPassword(page){
+    /**
+     * Function to check if the user input matches the correct password.
+     * 
+     * Params:
+     * - page: Page to redirect to if password is correct
+     */
+
     const passwordInput = prompt('Enter the password:');
     if(passwordInput === correctPassword){
         redirectToPage(page);
@@ -372,6 +414,13 @@ function checkPassword(page){
 }
 
 function redirectToPage(page){
+    /**
+     * Function to redirect to the specified page.
+     * 
+     * Params:
+     * - page: Page to redirect to
+     */
+
     if(page === 'create'){
         window.location.href = "Pages/Create_Player.html";
     }
@@ -379,10 +428,11 @@ function redirectToPage(page){
 
 
 const observer = new MutationObserver(function(mutations){
+    /**
+     * Mutation Observer to check for changes in the DOM, and call the necessary functions.
+     */
     mutations.forEach(function(mutation){
         initializeSearch();
-        //positionFilter();
-        
         addFilters('qb');
         addFilters('rb');
         addFilters('wr');
@@ -391,15 +441,21 @@ const observer = new MutationObserver(function(mutations){
         addFilters('d/st');
         resetFilter();
 
+        undoPick();
+
     });
 });
 
 observer.observe(document.body, {childList: true, subtree: true});
 
+const draftedPlayers = [];
 fetchDataFromSheetDB();
 
-
 function initializeSearch(){
+
+    /**
+     * Function to initialize the search functionality.
+     */
 
     const searchInput = document.getElementById('searchPlayer');
     const playerRows = document.querySelectorAll('[class^="row_"]');
@@ -418,12 +474,19 @@ function initializeSearch(){
 
 function addFilters(positionArg){
     
+    /**
+     * Function to add event listeners to each filter button.
+     * 
+     * Params:
+     * - positionArg: Position to filter by
+     */
+
     const playerRows = document.querySelectorAll('[class^="row_"]');
     const filterString = positionArg + "-filter";
     const thisButton = document.getElementById(filterString);
 
     thisButton.addEventListener('click', function(){
-        colorButtons(thisButton);
+        colorFilters(thisButton, false);
         playerRows.forEach(playerRow =>{
             const playerPosition = playerRow.querySelector('.position-rank').textContent.toLowerCase().substring(0,2);
             const shouldShow = playerPosition.includes(positionArg);
@@ -435,29 +498,69 @@ function addFilters(positionArg){
 
 function resetFilter(){
 
+    /**
+     * Function to reset the filter buttons.
+     */
+
     const playerRows = document.querySelectorAll('[class^="row_"]');
-    const resetButton = document.querySelector('reset-filter');
+    const resetButton = document.querySelector('.reset-filter');
 
     resetButton.addEventListener('click', function(){
-        colorButtons(resetButton);
-        resetButton.style.color = "black";
-        resetButton.style.backgroundColor = "white";
+        console.log("clicked");
+        colorFilters(resetButton, true);
         playerRows.forEach(playerRow =>{
             playerRow.style.display = 'block';
+            playerRow.querySelectorAll('*').forEach(child => {
+                child.style.display = '';
+            })
         })
-
     })
 
 }
 
-function colorButtons(thisButton){
+function colorFilters(thisButton, reset){
+
+    /**
+     * Function to color the filter buttons based on the actions performed by the user.
+     * 
+     * Parms:
+     * - thisButton: Button that was clicked
+     * - reset: Boolean to check if the filters need to be reset
+     */
+    
      const filters = document.querySelectorAll('button[id$="-filter"].pos-filter');
+
+     //set all filters to original colors
      filters.forEach(filter => {
         filter.style.color = "black";
         filter.style.backgroundColor = "white";
      })
-     thisButton.style.color = "silver";
-     thisButton.style.backgroundColor = "black";
+
+     //if not reset, change color of selected button
+     if (reset === false){
+        thisButton.style.color = "silver";
+        thisButton.style.backgroundColor = "black";
+     }
+}
+
+function undoPick(){
+
+    /**
+     * Function to undo the last pick made.
+     * 
+     * IN PROGRESS
+     */
+
+    const undoButton = document.getElementById('undo-button');
+
+    undoButton.addEventListener('click', function(){
+        console.log(draftedPlayers[draftedPlayers.length -1]);
+        const lastPick = (draftedPlayers[draftedPlayers.length - 1]);
+        lastPick.style.display = 'block';
+        lastPick.querySelectorAll('*').forEach(child => {
+            child.style.display = '';
+        })
+    })
 }
 
 

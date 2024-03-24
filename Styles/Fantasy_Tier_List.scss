@@ -146,15 +146,39 @@ input[type=radio]{
     overflow: hidden;
 }
 
-.horizontal-scroll-container{
+//Features
+.features-box{
     display: flex;
-    overflow-x:scroll;
-    overflow-y: hidden;
+    align-items: center;
+    position: relative;
     white-space: nowrap;
-    padding-bottom: 10px;
 }
 .filter-box{
     margin-top: 10px;
+    //max-width: 75%;
+}
+.pick-box{
+    margin-top: 10px;
+    right: 3%;
+    position: absolute;
+}
+
+@media only screen and (max-width: 769px){
+    .filter-box{
+        width: 75%;
+        max-width: 50%;
+        overflow-y: hidden;
+        overflow-x: scroll;
+        white-space: nowrap;
+    }
+    /*
+    .pick-box{
+        width: 25%;
+        max-width: 25%;
+        overflow-y: hidden;
+        overflow-x: scroll;
+        white-space: nowrap;
+    }*/
 }
 #searchPlayer{
     width: 200px;
@@ -192,6 +216,22 @@ input[type=radio]{
     color:silver;
     background-color: black;
 }
+
+.pick-button{
+    height: 30px;
+    width: 60px;
+    cursor:pointer;
+    border-width: .5pt;
+    border-color: black;
+    background-color: white;
+    //margin-left: 200px;
+}
+.pick-button:hover{
+    color: silver;
+    background-color: black;
+}
+
+//Players
 
 .player_container{
     position: relative;
@@ -461,6 +501,9 @@ $fore_color: black;
     top: 65%;
     display: flex;
     cursor: pointer;
+    overflow: hidden;
+    flex-wrap: wrap;
+    max-width: 100%;
 }
 
 .badge-img{
@@ -491,6 +534,81 @@ $fore_color: black;
     top: 0;
     transform: translateX(6px);
     z-index: 9999; /* Ensure description is on top of other content */
+}
+
+@media only screen and (max-width: 769px){
+    
+    .popup-header{
+        position: absolute;
+        top: 3%;
+        left: 12%;
+        font-weight: bold;
+        font-size: 18pt;
+    }
+
+    .popup-subhead{
+        position: absolute;
+        top: 10%;
+        left: 12%;
+        font-weight: bold;
+    }
+
+    .popup-adp{
+        position: absolute;
+        top:10%;
+        left: 26.5%;
+        font-weight: bold;
+    }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px){
+    
+    .popup-header{
+        position: absolute;
+        top: 3%;
+        left: 10.5%;
+        font-weight: bold;
+        font-size: 18pt;
+    }
+
+    .popup-subhead{
+        position: absolute;
+        top: 10%;
+        left: 10.5%;
+        font-weight: bold;
+    }
+
+    .popup-adp{
+        position: absolute;
+        top:10%;
+        left: 24.5%;
+        font-weight: bold;
+    }
+}
+
+@media only screen and (min-width: 1025px){
+    
+    .popup-header{
+        position: absolute;
+        top: 3%;
+        left: 6.5%;
+        font-weight: bold;
+        font-size: 18pt;
+    }
+
+    .popup-subhead{
+        position: absolute;
+        top: 8%;
+        left: 6.5%;
+        font-weight: bold;
+    }
+
+    .popup-adp{
+        position: absolute;
+        top: 8%;
+        left: 12.5%;
+        font-weight: bold;
+    }
 }
 
 $row-color: white;
@@ -745,13 +863,26 @@ $row-color: white;
     background-color: $row-color;
 }
 
-.attribute-box{
-    background-color: gray;
-    width: 250px;
-    position: absolute;
-    margin:5px;
+.attribute_container{
+    position: relative;
+    display: flex;
+    overflow-x:scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding-bottom: 10px;
+    padding: 15px;
+    border: 1px solid black;
     border-radius: 5px;
+    margin: 20px 20px;
+    max-width: 95%;
+    z-index: 1;
+    flex-shrink: 0;
 }
+
+.attribute_box{
+    
+}
+
 .attribution{
     color: black;
     margin-top: 2px;

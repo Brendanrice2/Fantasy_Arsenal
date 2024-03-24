@@ -45,15 +45,20 @@
     </script>
 
     <div id = "all-containers" class = "all-containers">
-        <div class = "filter-box">
-            <input type = "text" id="searchPlayer" placeholder = "Search">
-            <button id = "qb-filter" class = "pos-filter">QB</button>
-            <button id = "rb-filter" class = "pos-filter">RB</button>
-            <button id = "wr-filter" class = "pos-filter">WR</button>
-            <button id = "te-filter" class = "pos-filter">TE</button>
-            <button id = "k-filter" class = "pos-filter">K</button>
-            <button id = "d/st-filter" class = "pos-filter">D/ST</button>
-            <button id = "reset-filter" class = "reset-filter">Reset</button>
+        <div class = "features-box">
+            <div class = "filter-box">
+                <input type = "text" id="searchPlayer" placeholder = "Search">
+                <button id = "qb-filter" class = "pos-filter">QB</button>
+                <button id = "rb-filter" class = "pos-filter">RB</button>
+                <button id = "wr-filter" class = "pos-filter">WR</button>
+                <button id = "te-filter" class = "pos-filter">TE</button>
+                <button id = "k-filter" class = "pos-filter">K</button>
+                <button id = "d/st-filter" class = "pos-filter">D/ST</button>
+                <button id = "reset-filter" class = "reset-filter">Reset</button>
+            </div>
+            <div class = "pick-box">
+                <button id = "undo-button" class = "pick-button">Undo Pick</button>
+            </div>
         </div>
         <div id = "player_container_1" class = "player_container">
             <label for="player_container_1" class ="tier-label-1">1</label>
@@ -89,52 +94,26 @@
         <script src="Scripts/players.js"></script>
     </div>
     
-    <!--
-    <form id = "form" ><input type = "text" id = "search" class = "search" placeholder = "Search for a player"></form>
-    -->
-    <!--
-    <a href="/Fantasy_Football_2023.html">
-        <img src = "C:\Internships\Portfolio\Projects\Fantasy Football\fantasy_football.png" alt = "" style = "width:200px;height:200px">
-    </a>
--->
-    <div class = attribute-box>
-        <a href="https://www.flaticon.com/free-icons/flames" title="flames icons" class = "attribution">Flames icons created by Flat Icons - Flaticon</a>
-        <br>
-        <a href="https://www.flaticon.com/free-icons/snow" title="snow icons" class = "attribution">Snow icons created by Freepik - Flaticon</a>
-        <br>
-        <a href="https://www.flaticon.com/free-icons/info" title="info icons" class = "attribution">Info icons created by Plastic Donut - Flaticon</a>
-        <br>
-        <a href="https://www.flaticon.com/free-icons/close" title="close icons" class = "attribution">Close icons created by inkubators - Flaticon</a>
-        <br>
-        <a href="https://www.flaticon.com/free-icons/dessert" title="dessert icons" class = "attribution">Dessert icons created by Freepik - Flaticon</a>
-        <br>
-        <a href="https://www.flaticon.com/free-icons/coach" title="coach icons" class = "attribution">Coach icons created by Futuer - Flaticon</a>
-        <br>
-        <a href="https://www.flaticon.com/free-icons/edit" title="edit icons" class = "attribution">Edit icons created by Kiranshastry - Flaticon</a>
-        <br>
-        <a href="https://www.flaticon.com/free-icons/superhero" title="superhero icons" class = "attribution">Superhero icons created by Freepik - Flaticon</a>
-        <br>
-        <a href="https://www.flaticon.com/free-icons/sand-clock" title="sand clock icons" class = "attribution">Sand clock icons created by Freepik - Flaticon</a>
-        <br>
-        <a href="https://www.flaticon.com/free-icons/truck" title="truck icons" class = "attribution">Truck icons created by Freepik - Flaticon</a>
-        <br>
-        <a href="https://www.flaticon.com/free-icons/nuclear" title="nuclear icons" class = "attribution">Nuclear icons created by Konkapp - Flaticon</a>
-        <br>
-        <a href="https://www.flaticon.com/free-icons/nuclear" title="nuclear icons" class = "attribution">Nuclear icons created by Freepik - Flaticon</a>
-        <br>
-        <a href="https://www.flaticon.com/free-icons/coin" title="coin icons" class = "attribution">Coin icons created by Freepik - Flaticon</a>
-        <br>
-        <a href="https://www.flaticon.com/free-icons/red-cross" title="red cross icons" class = "attribution">Red cross icons created by Freepik - Flaticon</a>
-        <br>
-        <a href="https://www.flaticon.com/free-icons/sword" title="sword icons" class = "attribution">Sword icons created by Freepik - Flaticon</a>
-    `   <br>
-        <a href="https://www.flaticon.com/free-icons/letter-r" title="letter r icons" class = "attribution">Letter r icons created by Rakib Hassan Rahim - Flaticon</a>
-        <br>
-        <a href="https://www.flaticon.com/free-icons/magnet" title="magnet icons" class = "attribution">Magnet icons created by Freepik - Flaticon</a>
-        <br>
-        <a href="https://www.flaticon.com/free-icons/inches" title="inches icons" class = "attribution">Inches icons created by smashingstocks - Flaticon</a>
-        <br>
-        <a href="https://www.flaticon.com/free-icons/space-shuttle" title="space shuttle icons" class = "attribution">Space shuttle icons created by Freepik - Flaticon</a>
+    <div class = "attribute_container">
+        <div class = "attribution_box"><a href="https://www.flaticon.com/free-icons/flames" title="flames icons" class = "attribution">Flames icons created by Flat Icons - Flaticon</a></div>
+        <div class = "attribution_box"><a href="https://www.flaticon.com/free-icons/snow" title="snow icons" class = "attribution">Snow icons created by Freepik - Flaticon</a></div>
+        <div><a href="https://www.flaticon.com/free-icons/info" title="info icons" class = "attribution">Info icons created by Plastic Donut - Flaticon</a></div>
+        <div><a href="https://www.flaticon.com/free-icons/close" title="close icons" class = "attribution">Close icons created by inkubators - Flaticon</a></div>
+        <div><a href="https://www.flaticon.com/free-icons/dessert" title="dessert icons" class = "attribution">Dessert icons created by Freepik - Flaticon</a></div>
+        <div><a href="https://www.flaticon.com/free-icons/coach" title="coach icons" class = "attribution">Coach icons created by Futuer - Flaticon</a></div>
+        <div><a href="https://www.flaticon.com/free-icons/edit" title="edit icons" class = "attribution">Edit icons created by Kiranshastry - Flaticon</a></div>
+        <div><a href="https://www.flaticon.com/free-icons/superhero" title="superhero icons" class = "attribution">Superhero icons created by Freepik - Flaticon</a></div>
+        <div><a href="https://www.flaticon.com/free-icons/sand-clock" title="sand clock icons" class = "attribution">Sand clock icons created by Freepik - Flaticon</a></div>>
+        <div><a href="https://www.flaticon.com/free-icons/truck" title="truck icons" class = "attribution">Truck icons created by Freepik - Flaticon</a></div>
+        <div><a href="https://www.flaticon.com/free-icons/nuclear" title="nuclear icons" class = "attribution">Nuclear icons created by Konkapp - Flaticon</a></div>
+        <div><a href="https://www.flaticon.com/free-icons/nuclear" title="nuclear icons" class = "attribution">Nuclear icons created by Freepik - Flaticon</a></div>
+        <div><a href="https://www.flaticon.com/free-icons/coin" title="coin icons" class = "attribution">Coin icons created by Freepik - Flaticon</a></div>
+        <div><a href="https://www.flaticon.com/free-icons/red-cross" title="red cross icons" class = "attribution">Red cross icons created by Freepik - Flaticon</a></div>
+        <div><a href="https://www.flaticon.com/free-icons/sword" title="sword icons" class = "attribution">Sword icons created by Freepik - Flaticon</a></div>
+        <div><a href="https://www.flaticon.com/free-icons/letter-r" title="letter r icons" class = "attribution">Letter r icons created by Rakib Hassan Rahim - Flaticon</a></div>
+        <div><a href="https://www.flaticon.com/free-icons/magnet" title="magnet icons" class = "attribution">Magnet icons created by Freepik - Flaticon</a></div>
+        <div><a href="https://www.flaticon.com/free-icons/inches" title="inches icons" class = "attribution">Inches icons created by smashingstocks - Flaticon</a></div>
+        <div><a href="https://www.flaticon.com/free-icons/space-shuttle" title="space shuttle icons" class = "attribution">Space shuttle icons created by Freepik - Flaticon</a></div>
     </div>
 </body>
 
