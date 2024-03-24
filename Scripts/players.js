@@ -100,6 +100,10 @@ function createPlayerRow(item, dataContainer){
 
     /**
      * Function create a player 'row' (div) for each player in the fetched data.
+     * 
+     * Params:
+     * - item: Object containing player data
+     * - dataContainer: Container to append the player row to
      */
 
     const rowDiv = document.createElement('div');
@@ -126,7 +130,6 @@ function createPlayerRow(item, dataContainer){
         flamePic.classList.add('flame-pic');
 
         flamePic.src = 'Images/Icons/flames.png';
-        //removeCheckeredBackground(fire.src);
         playerFlame.appendChild(flamePic);
 
         rowDiv.appendChild(playerFlame);
@@ -182,11 +185,19 @@ function createPlayerRow(item, dataContainer){
     rowDiv.appendChild(closeDiv);
 
     dataContainer.appendChild(rowDiv);
-
-    //createPopup(item, rowDiv);
 }
 
 function editPopup(item){
+
+    /**
+     * Function to edit popup for each player row.
+     * 
+     * Params:
+     * - item: Object containing player data
+     * 
+     * Note:
+     * - Commented out sections using player photos, as to avoid any copyright risk
+     **/
 
     const playerPopup = document.getElementById('player-popup');
     playerPopup.style.display = "unset";
@@ -211,7 +222,7 @@ function editPopup(item){
     popupSummary.textContent = item.summary;
     popupSummary.classList.add('popup-summary');
 
-    /*
+    /* 
     const popupPicture = document.createElement('img');
     popupPicture.src = 'Images/Player_Photos/' + item.first_name + '_' + item.last_name + '.png';
     popupPicture.classList.add('popup-picture');
@@ -271,6 +282,14 @@ function editPopup(item){
 
 function getBadges(item, badgeContainer){
     
+    /**
+     * Function to check player data for badges, and create badges with descriptions.
+     * 
+     * Params:
+     * - item: Object containing player data
+     * - badgeContainer: Container to append badges to
+     */
+
     if(item.flame_or_fade == "Flame"){
         createBadgeWithDescription('Images/Icons/flames.png', badgeContainer, "This is a player I'm high on, and have been drafting a lot in mocks.")
     }
@@ -337,6 +356,16 @@ function getBadges(item, badgeContainer){
 }
 
 function createBadgeWithDescription(badgeImageSrc, badgeContainer, description_input) {
+    
+    /**
+     * Function to create a badge with a description.
+     * 
+     * Params:
+     * - badgeImageSrc: Source / Path of the badge image
+     * - badgeContainer: Container to append the badge to
+     * - description_input: Description of the badge
+     */
+
     const badge = document.createElement('img');
     badge.src = badgeImageSrc;
     badge.classList.add('badge-img');
@@ -364,10 +393,17 @@ function createBadgeWithDescription(badgeImageSrc, badgeContainer, description_i
     });
 }
 
-//Functions for filtering players
-
+// Variable to store correct password
 const correctPassword = "The Rain Song";
+
 function checkPassword(page){
+    /**
+     * Function to check if the user input matches the correct password.
+     * 
+     * Params:
+     * - page: Page to redirect to if password is correct
+     */
+
     const passwordInput = prompt('Enter the password:');
     if(passwordInput === correctPassword){
         redirectToPage(page);
@@ -378,6 +414,13 @@ function checkPassword(page){
 }
 
 function redirectToPage(page){
+    /**
+     * Function to redirect to the specified page.
+     * 
+     * Params:
+     * - page: Page to redirect to
+     */
+
     if(page === 'create'){
         window.location.href = "Pages/Create_Player.html";
     }
@@ -385,6 +428,9 @@ function redirectToPage(page){
 
 
 const observer = new MutationObserver(function(mutations){
+    /**
+     * Mutation Observer to check for changes in the DOM, and call the necessary functions.
+     */
     mutations.forEach(function(mutation){
         initializeSearch();
         addFilters('qb');
@@ -407,6 +453,10 @@ fetchDataFromSheetDB();
 
 function initializeSearch(){
 
+    /**
+     * Function to initialize the search functionality.
+     */
+
     const searchInput = document.getElementById('searchPlayer');
     const playerRows = document.querySelectorAll('[class^="row_"]');
 
@@ -424,6 +474,13 @@ function initializeSearch(){
 
 function addFilters(positionArg){
     
+    /**
+     * Function to add event listeners to each filter button.
+     * 
+     * Params:
+     * - positionArg: Position to filter by
+     */
+
     const playerRows = document.querySelectorAll('[class^="row_"]');
     const filterString = positionArg + "-filter";
     const thisButton = document.getElementById(filterString);
@@ -440,6 +497,10 @@ function addFilters(positionArg){
 }
 
 function resetFilter(){
+
+    /**
+     * Function to reset the filter buttons.
+     */
 
     const playerRows = document.querySelectorAll('[class^="row_"]');
     const resetButton = document.querySelector('.reset-filter');
@@ -458,7 +519,17 @@ function resetFilter(){
 }
 
 function colorFilters(thisButton, reset){
+
+    /**
+     * Function to color the filter buttons based on the actions performed by the user.
+     * 
+     * Parms:
+     * - thisButton: Button that was clicked
+     * - reset: Boolean to check if the filters need to be reset
+     */
+    
      const filters = document.querySelectorAll('button[id$="-filter"].pos-filter');
+
      //set all filters to original colors
      filters.forEach(filter => {
         filter.style.color = "black";
@@ -473,6 +544,13 @@ function colorFilters(thisButton, reset){
 }
 
 function undoPick(){
+
+    /**
+     * Function to undo the last pick made.
+     * 
+     * IN PROGRESS
+     */
+
     const undoButton = document.getElementById('undo-button');
 
     undoButton.addEventListener('click', function(){
