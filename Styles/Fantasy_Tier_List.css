@@ -15,16 +15,16 @@ header {
   align-items: center;
   justify-content: space-between;
   padding-bottom: 0 100px;
-  /*
-  border-bottom: 2px solid;
-  border-bottom-color: silver;
-  */
 }
 
 .logo {
   font-size: 28px;
   font-weight: bold;
   color: silver;
+}
+
+.page_titles {
+  padding: 0 25px;
 }
 
 .view_items {
@@ -845,10 +845,58 @@ input[type=radio] {
   flex-shrink: 0;
 }
 
-.attribution {
+.attribution_box {
+  position: relative;
+  margin: 10px 6px;
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  width: 50px;
+  height: 50px;
+  /* Add flex-shrink: 0; to prevent shrinking */
+  flex-shrink: 0;
+}
+
+.icon_attribution_img {
+  margin: 3px;
+  width: 40px;
+  height: 40px;
+}
+
+.icon_info_div {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: -25%;
+  right: -40%;
+}
+
+.icon_attribution_info {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+#attribution_info_popup {
+  display: none;
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  transform: translate(-50%, -50%);
+  background-color: white;
   color: black;
-  margin-top: 2px;
-  font-size: 8pt;
+  border-color: silver;
+  border: 3px solid black;
+  z-index: 9999;
+  top: 75%;
+  left: 50%;
+}
+
+.attribution_info_text {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  font-weight: bold;
+  font-size: 10pt;
 }
 
 main {

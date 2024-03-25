@@ -95,6 +95,62 @@ function fetchDataFromSheetDB(){
         });
 }
 
+// Data structure used to hold information on icons used throughout the site
+icon_map = {
+    flame: {'src': 'Images/Icons/flames.png', 'attribution': 'Flames icons created by Flat Icons - Flaticon'},
+    fade: {'src': 'Images/Icons/snowflake.png', 'attribution': 'Snowflake icons created by Flat Icons - Flaticon'},
+
+};
+
+function createIconAttributions(){
+    /**
+     * Function to create the icon attributions using the icon_map data structure.
+     */
+
+    for (const [icon, info] of Object.entries(icon_map)){
+        const iconAttribution = document.createElement('div');
+        iconAttribution.classList.add('attribution_box');
+
+        const iconImg = document.createElement('img');
+        iconImg.src = info['src'];
+        iconImg.classList.add('icon_attribution_img')
+
+        const iconLink = document.createElement('a');
+        iconLink.href = info['attribution'];
+        iconLink.classList.add('icon_attribution_link');
+        
+        const infoButtonDiv = document.createElement('div');
+        infoButtonDiv.classList.add('icon_info_div');
+        const infoButton = document.createElement('img');
+        infoButton.src = 'Images/Icons/info.png';
+        infoButton.classList.add('icon_attribution_info');
+        infoButtonDiv.appendChild(infoButton);
+
+        console.log(info['attribution'])
+
+        infoButtonDiv.addEventListener('click', function(){
+            const attribution_info_popup = document.getElementById('attribution_info_popup');
+            attribution_info_popup.style.display = 'unset';
+
+            const attribution_info_text = document.createElement('span');
+            attribution_info_text.textContent = info['attribution'];
+            attribution_info_text.classList.add('attribution_info_text');
+
+            attribution_info_popup.appendChild(attribution_info_text);
+            console.log(info['attribution']);
+
+        });
+
+        iconAttribution.appendChild(iconImg);
+        iconAttribution.appendChild(iconLink);
+        iconAttribution.appendChild(infoButtonDiv);
+
+        const attribute_container = document.getElementById('attribute_container');
+        attribute_container.appendChild(iconAttribution);
+
+    }
+}
+
 
 function createPlayerRow(item, dataContainer){
 
@@ -449,7 +505,7 @@ const observer = new MutationObserver(function(mutations){
 observer.observe(document.body, {childList: true, subtree: true});
 
 const draftedPlayers = [];
-fetchDataFromSheetDB();
+main();
 
 function initializeSearch(){
 
@@ -562,5 +618,14 @@ function undoPick(){
         })
     })
 }
+
+function main(){
+
+    createIconAttributions();
+    // fetchDataFromSheetDB();
+    
+}
+
+
 
 
