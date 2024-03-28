@@ -876,27 +876,40 @@ input[type=radio] {
   cursor: pointer;
 }
 
-#attribution_info_popup {
+.attribution_info_popup {
   display: none;
-  position: fixed;
-  width: 20px;
+  position: absolute;
+  width: 300px;
   height: 20px;
   transform: translate(-50%, -50%);
   background-color: white;
   color: black;
   border-color: silver;
-  border: 3px solid black;
-  z-index: 9999;
-  top: 75%;
-  left: 50%;
+  border: 2px solid #ccc;
+  z-index: 99999;
+  left: 200px;
 }
 
 .attribution_info_text {
   position: absolute;
+  margin-left: 2px;
   top: 10%;
-  left: 10%;
+  left: 0%;
   font-weight: bold;
   font-size: 10pt;
+}
+
+.attribution_info_close_button_div {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 0%;
+  cursor: pointer;
+}
+
+.attribution_info_close_button {
+  width: 15px;
+  height: 15px;
 }
 
 main {

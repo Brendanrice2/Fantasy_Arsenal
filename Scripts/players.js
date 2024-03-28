@@ -98,9 +98,29 @@ function fetchDataFromSheetDB(){
 // Data structure used to hold information on icons used throughout the site
 icon_map = {
     flame: {'src': 'Images/Icons/flames.png', 'attribution': 'Flames icons created by Flat Icons - Flaticon'},
-    fade: {'src': 'Images/Icons/snowflake.png', 'attribution': 'Snowflake icons created by Flat Icons - Flaticon'},
+    fade: {'src': 'Images/Icons/snowflake.png', 'attribution': 'Snowflake icons created by Freepik - Flaticon'},
+    info: {'src': 'Images/Icons/info.png', 'attribution': 'Info icons created by Plastic Donut - Flaticon'},
+    close: {'src': 'Images/Icons/close.png', 'attribution': 'Close icons created by inkubators - Flaticon'},
+    dessert: {'src': 'Images/Icons/cupcake.png', 'attribution': 'Dessert icons created by Freepik - Flaticon'},
+    coach: {'src': 'Images/Icons/coach.png', 'attribution': 'Coach icons created by Futuer - Flaticon'},
+    edit: {'src': 'Images/Icons/edit.png', 'attribution': 'Edit icons created by Kiranshastry - Flaticon'},
+    superhero: {'src': 'Images/Icons/hero.png', 'attribution': 'Superhero icons created by Freepik - Flaticon'},
+    sandclock: {'src': 'Images/Icons/hourglass.png', 'attribution': 'Sand clock icons created by Freepik - Flaticon'},
+    truck: {'src': 'Images/Icons/moving-truck.png', 'attribution': 'Truck icons created by Freepik - Flaticon'},
+    nuclear: {'src': 'Images/Icons/nuclear-plant.png', 'attribution': 'Nuclear icons created by Konkapp - Flaticon'},
+    coin: {'src': 'Images/Icons/pricey.png', 'attribution': 'Coin icons created by Freepik - Flaticon'},
+    redCross: {'src': 'Images/Icons/red-cross.png', 'attribution': 'Red cross icons created by Freepik - Flaticon'},
+    sword: {'src': 'Images/Icons/shield.png', 'attribution': 'Sword icons created by Freepik - Flaticon'},
+    letterR: {'src': 'Images/Icons/rookie.png', 'attribution': 'Letter icons created by Rakib Hassan Rahim - Flaticon'},
+    magnet: {'src': 'Images/Icons/ppr.png', 'attribution': 'Magnet icons created by Freepik - Flaticon'},
+    inches: {'src': 'Images/Icons/big_play.png', 'attribution': 'Inches icons created by smashingstocks - Flaticon'},
+    spaceShuttle: {'src': 'Images/Icons/goal_line.png', 'attribution': 'Space shuttle icons created by Freepik - Flaticon'},
 
 };
+
+// Variables to store the current attribution and info button divs, in order to hide them when another is clicked
+var current_attribution = [];  
+var current_info_button = [];
 
 function createIconAttributions(){
     /**
@@ -126,18 +146,57 @@ function createIconAttributions(){
         infoButton.classList.add('icon_attribution_info');
         infoButtonDiv.appendChild(infoButton);
 
-        console.log(info['attribution'])
-
         infoButtonDiv.addEventListener('click', function(){
-            const attribution_info_popup = document.getElementById('attribution_info_popup');
-            attribution_info_popup.style.display = 'unset';
+            const attribution_info_popup = document.createElement('div'); // attribution info div
+            attribution_info_popup.classList.add('attribution_info_popup');
+            attribution_info_popup.id = icon + '_attribution_info_popup';
 
-            const attribution_info_text = document.createElement('span');
+            const attribution_info_text = document.createElement('span');   //attribution text
             attribution_info_text.textContent = info['attribution'];
             attribution_info_text.classList.add('attribution_info_text');
 
-            attribution_info_popup.appendChild(attribution_info_text);
-            console.log(info['attribution']);
+            const close_button_div = document.createElement('div');     //close button div
+            close_button_div.classList.add('attribution_info_close_button_div');
+            const close_button = document.createElement('img');
+            close_button.src = 'Images/Icons/close.png';
+            close_button.classList.add('attribution_info_close_button');
+
+            // closing other popups if open
+            if (current_attribution.length != 0){
+                current_attribution[0].style.display = 'none';
+                current_attribution.splice(0,1);
+                current_info_button[0].style.display = 'unset';
+                current_info_button.splice(0,1);
+                current_info_button.push(infoButtonDiv);
+                current_attribution.push(attribution_info_popup);
+
+            }
+            else{
+                current_attribution.push(attribution_info_popup);
+                current_info_button.push(infoButtonDiv);
+                
+            }
+            
+            // close button event listener
+            close_button.addEventListener('click', function(){
+                attribution_info_popup.style.display = 'none';
+                infoButtonDiv.style.display = 'unset';
+            });
+
+            close_button_div.appendChild(close_button);
+
+            attribution_info_popup.appendChild(attribution_info_text); 
+            attribution_info_popup.appendChild(close_button_div); 
+
+            iconAttribution.appendChild(attribution_info_popup);
+            attribution_info_popup.style.display = 'unset';
+            
+            // adjusting width of popup if text is too long
+            if (attribution_info_text.textContent.length > 48){
+                attribution_info_popup.style.width = '340px';
+            }
+
+            infoButtonDiv.style.display = 'none';
 
         });
 
@@ -622,7 +681,7 @@ function undoPick(){
 function main(){
 
     createIconAttributions();
-    // fetchDataFromSheetDB();
+    fetchDataFromSheetDB();
     
 }
 
