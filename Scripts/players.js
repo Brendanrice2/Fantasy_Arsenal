@@ -1,3 +1,55 @@
+// DATA STRUCTURES
+
+// Data structure used to hold information on icons used throughout the site
+icon_map = {
+    flame: {'src': 'Images/Icons/flames.png', 'attribution': 'Flames icons created by Flat Icons - Flaticon'},
+    fade: {'src': 'Images/Icons/snowflake.png', 'attribution': 'Snowflake icons created by Freepik - Flaticon'},
+    info: {'src': 'Images/Icons/info.png', 'attribution': 'Info icons created by Plastic Donut - Flaticon'},
+    close: {'src': 'Images/Icons/close.png', 'attribution': 'Close icons created by inkubators - Flaticon'},
+    dessert: {'src': 'Images/Icons/cupcake.png', 'attribution': 'Dessert icons created by Freepik - Flaticon'},
+    coach: {'src': 'Images/Icons/coach.png', 'attribution': 'Coach icons created by Futuer - Flaticon'},
+    edit: {'src': 'Images/Icons/edit.png', 'attribution': 'Edit icons created by Kiranshastry - Flaticon'},
+    superhero: {'src': 'Images/Icons/hero.png', 'attribution': 'Superhero icons created by Freepik - Flaticon'},
+    sandclock: {'src': 'Images/Icons/hourglass.png', 'attribution': 'Sand clock icons created by Freepik - Flaticon'},
+    truck: {'src': 'Images/Icons/moving-truck.png', 'attribution': 'Truck icons created by Freepik - Flaticon'},
+    nuclearPlant: {'src': 'Images/Icons/nuclear-plant.png', 'attribution': 'Nuclear icons created by Konkapp - Flaticon'},
+    nuclearPower: {'src': 'Images/Icons/nuclear-power.png', 'attribution': 'Nuclear power icons created by Freepik - Flaticon'},
+    coin: {'src': 'Images/Icons/pricey.png', 'attribution': 'Coin icons created by Freepik - Flaticon'},
+    redCross: {'src': 'Images/Icons/red-cross.png', 'attribution': 'Red cross icons created by Freepik - Flaticon'},
+    sword: {'src': 'Images/Icons/shield.png', 'attribution': 'Sword icons created by Freepik - Flaticon'},
+    letterR: {'src': 'Images/Icons/rookie.png', 'attribution': 'Letter icons created by Rakib Hassan Rahim - Flaticon'},
+    magnet: {'src': 'Images/Icons/ppr.png', 'attribution': 'Magnet icons created by Freepik - Flaticon'},
+    inches: {'src': 'Images/Icons/big_play.png', 'attribution': 'Inches icons created by smashingstocks - Flaticon'},
+    spaceShuttle: {'src': 'Images/Icons/goal_line.png', 'attribution': 'Space shuttle icons created by Freepik - Flaticon'},
+
+};
+
+// Data structure used to store a badge, its image src, and description
+badge_map = {
+    flame: {'src': 'Images/Icons/flames.png', 'description': 'This is a player I\'m high on, and have been drafting a lot in mocks.'},
+    fade: {'src': 'Images/Icons/snowflake.png', 'description': 'This is a player I\'m fading, and not drafting unless I get them far later than their ADP.'},
+    breakout: {'src': 'Images/Icons/nuclear-power.png', 'description': 'Candidate for a breakout season this year. Extremely high upside.'},
+    recent_injury: {'src': 'Images/Icons/red-cross.png', 'description': 'Player who suffered an injury recently.'},
+    new_coach: {'src': 'Images/Icons/coach.png', 'description': 'Player who is heading into the season with a new coach / OC.'},
+    new_team: {'src': 'Images/Icons/moving-truck.png', 'description': 'A player who is playing for a new team this season.'},
+    hero: {'src': 'Images/Icons/hero.png', 'description': 'This player is the number one option in their offense, regardless of the situation.'},
+    expensive: {'src': 'Images/Icons/pricey.png', 'description': 'This player is expensive at his draft position.'},
+    easy_division: {'src': 'Images/Icons/cupcake.png', 'description': 'This player plays in a weak division.'},
+    difficult_division: {'src': 'Images/Icons/shield.png', 'description': 'This player plays in a very competetive division.'},
+    high_powered_o: {'src': 'Images/Icons/nuclear-plant.png', 'description': 'This player is apart of high powered offense.'},
+    old: {'src': 'Images/Icons/hourglass.png', 'description': 'This player is older, and that could be a contributing factor to their output.'},
+    rookie: {'src': 'Images/Icons/rookie.png', 'description': 'This player is a rookie.'},
+    ppr_machine: {'src': 'Images/Icons/ppr.png', 'description': 'This player is a PPR machine, and excels at catching passes.'},
+    big_play: {'src': 'Images/Icons/big_play.png', 'description': 'This player has a better chance at creating big plays.'},
+}
+
+// Variables to store the current attribution and info button divs, in order to hide them when another is clicked
+var current_attribution = [];  
+var current_info_button = [];
+
+const draftedPlayers = []; // Stores the drafted / closed out players
+var lastPickId;     // Stores the last pick id
+
 function fetchDataFromSheetDB(){
     /**
      * Function to fetch player data from API, and create base containers as well as
@@ -94,53 +146,6 @@ function fetchDataFromSheetDB(){
             console.log('Error fetching data from SheetDB', error);
         });
 }
-
-// Data structure used to hold information on icons used throughout the site
-icon_map = {
-    flame: {'src': 'Images/Icons/flames.png', 'attribution': 'Flames icons created by Flat Icons - Flaticon'},
-    fade: {'src': 'Images/Icons/snowflake.png', 'attribution': 'Snowflake icons created by Freepik - Flaticon'},
-    info: {'src': 'Images/Icons/info.png', 'attribution': 'Info icons created by Plastic Donut - Flaticon'},
-    close: {'src': 'Images/Icons/close.png', 'attribution': 'Close icons created by inkubators - Flaticon'},
-    dessert: {'src': 'Images/Icons/cupcake.png', 'attribution': 'Dessert icons created by Freepik - Flaticon'},
-    coach: {'src': 'Images/Icons/coach.png', 'attribution': 'Coach icons created by Futuer - Flaticon'},
-    edit: {'src': 'Images/Icons/edit.png', 'attribution': 'Edit icons created by Kiranshastry - Flaticon'},
-    superhero: {'src': 'Images/Icons/hero.png', 'attribution': 'Superhero icons created by Freepik - Flaticon'},
-    sandclock: {'src': 'Images/Icons/hourglass.png', 'attribution': 'Sand clock icons created by Freepik - Flaticon'},
-    truck: {'src': 'Images/Icons/moving-truck.png', 'attribution': 'Truck icons created by Freepik - Flaticon'},
-    nuclearPlant: {'src': 'Images/Icons/nuclear-plant.png', 'attribution': 'Nuclear icons created by Konkapp - Flaticon'},
-    nuclearPower: {'src': 'Images/Icons/nuclear-power.png', 'attribution': 'Nuclear power icons created by Freepik - Flaticon'},
-    coin: {'src': 'Images/Icons/pricey.png', 'attribution': 'Coin icons created by Freepik - Flaticon'},
-    redCross: {'src': 'Images/Icons/red-cross.png', 'attribution': 'Red cross icons created by Freepik - Flaticon'},
-    sword: {'src': 'Images/Icons/shield.png', 'attribution': 'Sword icons created by Freepik - Flaticon'},
-    letterR: {'src': 'Images/Icons/rookie.png', 'attribution': 'Letter icons created by Rakib Hassan Rahim - Flaticon'},
-    magnet: {'src': 'Images/Icons/ppr.png', 'attribution': 'Magnet icons created by Freepik - Flaticon'},
-    inches: {'src': 'Images/Icons/big_play.png', 'attribution': 'Inches icons created by smashingstocks - Flaticon'},
-    spaceShuttle: {'src': 'Images/Icons/goal_line.png', 'attribution': 'Space shuttle icons created by Freepik - Flaticon'},
-
-};
-
-// Data structure used to store a badge, its image src, and description
-badge_map = {
-    flame: {'src': 'Images/Icons/flames.png', 'description': 'This is a player I\'m high on, and have been drafting a lot in mocks.'},
-    fade: {'src': 'Images/Icons/snowflake.png', 'description': 'This is a player I\'m fading, and not drafting unless I get them far later than their ADP.'},
-    breakout: {'src': 'Images/Icons/nuclear-power.png', 'description': 'Candidate for a breakout season this year. Extremely high upside.'},
-    recent_injury: {'src': 'Images/Icons/red-cross.png', 'description': 'Player who suffered an injury recently.'},
-    new_coach: {'src': 'Images/Icons/coach.png', 'description': 'Player who is heading into the season with a new coach / OC.'},
-    new_team: {'src': 'Images/Icons/moving-truck.png', 'description': 'A player who is playing for a new team this season.'},
-    hero: {'src': 'Images/Icons/hero.png', 'description': 'This player is the number one option in their offense, regardless of the situation.'},
-    expensive: {'src': 'Images/Icons/pricey.png', 'description': 'This player is expensive at his draft position.'},
-    easy_division: {'src': 'Images/Icons/cupcake.png', 'description': 'This player plays in a weak division.'},
-    difficult_division: {'src': 'Images/Icons/shield.png', 'description': 'This player plays in a very competetive division.'},
-    high_powered_o: {'src': 'Images/Icons/nuclear-plant.png', 'description': 'This player is apart of high powered offense.'},
-    old: {'src': 'Images/Icons/hourglass.png', 'description': 'This player is older, and that could be a contributing factor to their output.'},
-    rookie: {'src': 'Images/Icons/rookie.png', 'description': 'This player is a rookie.'},
-    ppr_machine: {'src': 'Images/Icons/ppr.png', 'description': 'This player is a PPR machine, and excels at catching passes.'},
-    big_play: {'src': 'Images/Icons/big_play.png', 'description': 'This player has a better chance at creating big plays.'},
-}
-
-// Variables to store the current attribution and info button divs, in order to hide them when another is clicked
-var current_attribution = [];  
-var current_info_button = [];
 
 function createIconAttributions(){
     /**
@@ -305,24 +310,29 @@ function createPlayerRow(item, dataContainer){
     closeRow.src = 'Images/Icons/close.png';
     closeDiv.appendChild(closeRow);
 
-    closeDiv.addEventListener('click', function(){
-        draftedPlayers[item.id] = {};
-        draftedPlayers[item.id].rowDiv = rowDiv;
-        draftedPlayers[item.id].children = [];
-        lastPickId = item.id;
-        while (rowDiv.firstChild){
-            draftedPlayers[item.id].children.push(rowDiv.firstChild);
-            rowDiv.removeChild(rowDiv.firstChild);
-        }
-        rowDiv.style.display = 'none';
-       
-    });
-
     rowDiv.appendChild(playerInfo);
     //rowDiv.appendChild(playerPic);
     rowDiv.appendChild(playerName);
     rowDiv.appendChild(playerRank);
     rowDiv.appendChild(playerPositionRank);
+
+    closeDiv.addEventListener('click', function(){
+        // draftedPlayers[item.id] = {};
+        // draftedPlayers[item.id].rowDiv = rowDiv;
+        // draftedPlayers[item.id].children = [];
+        // lastPickId = item.id;
+        // while (rowDiv.firstChild){
+        //     draftedPlayers[item.id].children.push(rowDiv.firstChild);
+        //     rowDiv.removeChild(rowDiv.firstChild);
+        // }
+        // rowDiv.style.display = 'none';
+        const rowIndex = Array.from(dataContainer.children).indexOf(rowDiv);
+        draftedPlayers.push( {rowDiv, parent: dataContainer, rowIndex });
+        rowDiv.style.display = 'none';
+        console.log("Drafted: ", rowDiv.id);
+       
+    });
+
     rowDiv.appendChild(closeDiv);
 
     dataContainer.appendChild(rowDiv);
@@ -516,126 +526,11 @@ const observer = new MutationObserver(function(mutations){
      * Mutation Observer to check for changes in the DOM, and call the necessary functions.
      */
     mutations.forEach(function(mutation){
-        // initializeSearch();
-        // // addFilters('qb');
-        // // addFilters('rb');
-        // // addFilters('wr');
-        // // addFilters('te');
-        // // addFilters('k');
-        // // addFilters('d/st');
         
-        // applyFilter('position-filter')
-        // resetFilter();
-
-        // undoPick();
-        initializeSearch();
-        resetFilter();
-        undoPick();
-        if(mutation.type === 'childList' && mutation.addedNodes.length > 0){
-            mutation.addedNodes.forEach(node=>{
-                if(node.nodeType === 1 && node.classList.contains('pos-filter')) {
-                    const position = node.id.replace('-filter', '');
-                    applyFilter(position);
-                }
-            })
-        }
-
     });
 });
 
 observer.observe(document.body, {childList: true, subtree: true});
-
-const draftedPlayers = {};
-var lastPickId;     // Stores the last pick id
-
-function initializeSearch(){
-
-    /**
-     * Function to initialize the search functionality.
-     */
-
-    const searchInput = document.getElementById('searchPlayer');
-    const playerRows = document.querySelectorAll('[class^="row_"]');
-
-    searchInput.addEventListener('input', function(){
-        const searchTerm = searchInput.value.toLowerCase();
-
-        playerRows.forEach(playerRow =>{
-            const playerLabel = playerRow.querySelector('.name').textContent.toLowerCase();
-            const shouldShow = playerLabel.includes(searchTerm);
-            playerRow.style.display = shouldShow ? 'block' : 'none';
-        });
-    });
-}
-
-// function addFilters(positionArg){
-    
-//     /**
-//      * Function to add event listeners to each filter button.
-//      * 
-//      * Params:
-//      * - positionArg: Position to filter by
-//      */
-
-//     console.log("Clicked: ", positionArg)
-
-//     const playerRows = document.querySelectorAll('[class^="row_"]');
-//     const filterString = positionArg + "-filter";
-//     const thisButton = document.getElementById(filterString);
-
-//     thisButton.addEventListener('click', function(){
-//         colorFilters(thisButton, false);
-//         playerRows.forEach(playerRow =>{
-//             const playerPosition = playerRow.querySelector('.position-rank').textContent.toLowerCase().substring(0,2);
-//             const shouldShow = playerPosition.includes(positionArg);
-//             playerRow.style.display = shouldShow ? 'block' : 'none';
-//         });
-
-//     });
-// }
-
-
-function addFilters(){
-
-    /**
-     * Function to add event listeners to each filter button.
-     * 
-     */
-
-    const positions = ['qb', 'rb', 'wr', 'te', 'k', 'd/st'];
-    const filterContainer = document.getElementById('filter-container');
-    const filterButtons = filterContainer.querySelectorAll('.pos-filter');
-
-    filterButtons.forEach(filterButton => {
-        filterButton.addEventListener('click', function(){
-            const position = this.id.replace('-filter', '');
-            applyFilter(position);
-            // colorFilters(filterButton, false);
-            // applyFilter(filterButton.id);
-        });
-    });
-
-}
-
-function applyFilter(position){
-
-    /**
-     * Function to apply the filter based on the position selected.
-     * 
-     * Params:
-     * - position: Position to filter by
-     */
-    
-    const playerRows = document.querySelectorAll('[class^="row_"]');
-
-    playerRows.forEach(playerRow=>{
-        const playerPosition = playerRow.querySelector('.position-rank').textContent.toLowerCase().substring(0,2);
-        const shouldShow = playerPosition.includes(position);
-        playerRow.style.display = shouldShow ? 'block' : 'none';
-    });
-
-}
-
 
 function resetFilter(){
 
@@ -683,42 +578,98 @@ function colorFilters(thisButton, reset){
      }
 }
 
-function undoPick(){
 
-    /**
-     * Function to undo the last pick made.
-     * 
-     * IN PROGRESS
-     */
+function buildUndoButton(){
 
-    const undoButton = document.getElementById('undo-button');
-    const lastPick = draftedPlayers[lastPickId];
+    // Function to build the undo button. This button undoes the last selection
 
-    console.log("last pick: ", lastPick);
-
-    undoButton.addEventListener('click', function(){
-        for (const id in draftedPlayers){
-            const playerRow = draftedPlayers[id].rowDiv;
-            playerRow.style.display = 'block';
-            draftedPlayers[id].children.forEach(child => {
-                playerRow.appendChild(child);
-            });
+    console.log("buildUndoButton");
+    document.getElementById('undo-button').addEventListener('click', function(){
+        if (draftedPlayers.length > 0) {
+            const {rowDiv, parent, rowIndex} = draftedPlayers.pop();
+            console.log("Undoing player id: ", rowDiv.id);
+            rowDiv.style.display = 'block';
+            
+            if (rowIndex >= parent.children.length){
+                parent.appendChild(rowDiv);
+            }
+            else{
+                parent.insertBefore(rowDiv, parent.children[rowIndex]);
+            }
         }
     });
+}
 
-    // undoButton.addEventListener('click', function(){
-    //     // console.log(draftedPlayers[draftedPlayers.length -1]);
-    //     const lastPick = (draftedPlayers[draftedPlayers.length - 1]);
-    //     lastPick.style.display = 'block';
-    //     console.log("HI");
-    //     lastPick.querySelectorAll('*').forEach(child => {
-    //         console.log(child);
-    //         child.style.display = 'block';
-    //     })
-        
+function buildPositionFilters(){
 
-    //     // remember to remove this player from the draftplayers array
-    // })
+    /**
+     * Function to add event listeners to each filter button.
+     * 
+     */
+
+    const filterContainer = document.getElementById('filter-container');
+    const filterButtons = filterContainer.querySelectorAll('.pos-filter');
+
+    filterButtons.forEach(filterButton => {
+        filterButton.addEventListener('click', function(){
+            
+            const playerRows = document.querySelectorAll('div[class*="row_"]');
+            
+            playerRows.forEach(playerRow=>{
+
+                const playerPosition = playerRow.querySelector('.position-rank').textContent.toLowerCase().substring(0,2);
+
+                const filterPosition = filterButton.id.toLowerCase().substring(0,2);
+
+                const shouldShow = filterPosition.includes(playerPosition);
+
+                playerRow.style.display = shouldShow ? 'block' : 'none';
+                
+            })
+
+            colorFilters(filterButton, false);
+
+        });
+    });
+}
+
+function buildSearchBar(){
+    /**
+     * Function to build the player search bar
+     */
+
+    const searchInput = document.getElementById('searchPlayer');
+
+    searchInput.addEventListener('input', function(){
+        const playerRows = document.querySelectorAll('[class^="row_"]');
+        const searchTerm = searchInput.value.toLowerCase();
+
+        playerRows.forEach(playerRow =>{
+            const playerLabel = playerRow.querySelector('.name').textContent.toLowerCase();
+            const shouldShow = playerLabel.includes(searchTerm);
+            playerRow.style.display = shouldShow ? 'block' : 'none';
+        });
+    });
+}
+
+function buildResetButton(){
+
+    /**
+     * Function to build reset button. Used to undo all filters, and reset all picks.
+     */
+
+    const playerRows = document.querySelectorAll('[class^="row_"]');
+    const resetButton = document.querySelector('.reset-filter');
+
+    resetButton.addEventListener('click', function(){
+        colorFilters(resetButton, true);
+        playerRows.forEach(playerRow =>{
+            playerRow.style.display = 'block';
+            playerRow.querySelectorAll('*').forEach(child => {
+                child.style.display = '';
+            })
+        })
+    })
 }
 
 function initialSetup(){
@@ -726,12 +677,14 @@ function initialSetup(){
      * Function to set up the initial state of the page.
      */
 
-    //*------- Not correct implementation of filter buttons, they must be obersved
-    // for (const position of positions){
-    //     addFilters(position);
-    // }
+    // Filtering for positions will add back drafted players. Look for a fix for this.
 
     createIconAttributions();
+    buildUndoButton(); //works as intended
+    buildPositionFilters(); //works as intended
+    buildSearchBar();   //works as intended
+    buildResetButton(); //on this now
+
 }
 
 function main(){
@@ -742,7 +695,7 @@ function main(){
     initialSetup();
 
     // Uncomment this when pushing
-    fetchDataFromSheetDB();  
+    // fetchDataFromSheetDB();  
     
 }
 
