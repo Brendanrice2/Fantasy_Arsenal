@@ -7,7 +7,7 @@
   font-family: "Google Sans Regular";
 }
 
-header {
+#main-header {
   height: 80px;
   width: 100%;
   background: black;
@@ -21,6 +21,7 @@ header {
   font-size: 28px;
   font-weight: bold;
   color: silver;
+  margin-left: 25px;
 }
 
 .page_titles {

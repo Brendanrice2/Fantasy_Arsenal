@@ -6,13 +6,14 @@
     <meta name="viewport" content = "width = device-width, intial-scale=1. 0">
 
     <link href = "Styles/Fantasy_Tier_List.css" rel="stylesheet" type="text/css">
+    <link href = "Styles/Fantasy_Tier_List_editPopup.css" rel="stylesheet" type ="text/css">
     <title>Fantasy Football 2023 Tier List </title>
 </head>
 
 <body>
-    <header>
+    <header id="main-header">
         <!-- Logo for website-->
-        <div class = "logo">Fantasy Football 2023 Tier List</div>
+        <div class = "logo">Fantasy Football 2024 Tier List</div>
         <!--Hamburger looking menu-->
         <div class = "view_items">
             <div class = "line"></div>
@@ -44,6 +45,201 @@
         }
     </script>
 
+    <div id = "edit-container" >
+        <div id="edit-header">
+            <span id="edit-title">Edit Player</span>
+            <div id="edit-closeout">
+                <img src="Images/Icons/close.png" id="edit-closeout-button">
+            </div>
+        </div>
+        <div id="edit-body">
+            <form action="https://sheetdb.io/api/v1/fc74l8c82eqve" method = "post" id = "sheetdb-form">
+
+                <div id="edit-name-container">
+                    <input type="text" class="edit-name" id = "edit-first-name" name="data[first_name]" placeholder="First Name" required>
+        
+                    <input type="text" class="edit-name" id = "edit-last-name" name="data[last_name]" placeholder="Last Name" required>
+                </div>
+                <!-- <br> -->
+                <div id="edit-position-container" class="radio-button">
+                    
+                    <input type="radio" id = "edit-position-qb" name="data[position]" value="QB" required/>
+                    <label for="position-qb">QB</label>
+        
+                    <input type="radio" id = "edit-position-rb" name="data[position]" value="RB"/>
+                    <label for="position-rb">RB</label>
+        
+                    <input type="radio" id = "edit-position-wr" name="data[position]" value="WR"/>
+                    <label for="position-wr">WR</label>
+        
+                    <input type="radio"  id = "edit-position-te" name="data[position]" value="TE" />
+                    <label for="position-te">TE</label>
+        
+                    <input type="radio"  id = "edit-position-d/st" name="data[position]" value="D/ST"/>
+                    <label for="position-d/st">D/ST</label>
+        
+                    <input type="radio" id = "edit-position-k" name="data[position]" value="K"/>
+                    <label for="position-k">K</label>
+        
+                </div>
+                <!-- <br> -->
+                <div id="edit-numbers-container">
+
+                    <div class="edit-numbers-labels-container">
+                        <label for="edit-rank" class = "edit-number-labels">Rank</label>
+                        <label for="edit-position-rank" class = "edit-number-labels">Position Rank</label>
+                    </div>
+
+                    <div class="edit-numbers-subcontainer">
+                        <input type="text" class = "edit-numbers" id="edit-rank" name = "data[rank]" placeholder="Rank" required/>
+                        <input type="text" class = "edit-numbers" id="edit-position-rank" name = "data[position_rank]" placeholder="Position Rank" required/>
+                    </div>
+
+                    <div class="edit-numbers-labels-container">
+                        <label for="edit-adp" class = "edit-number-labels">ADP</label>
+                        <label for="edit-tier" class = "edit-number-labels">Tier</label>
+                    </div>
+
+                    <div class="edit-numbers-subcontainer">
+                        <input type="text" class = "edit-numbers" id="edit-adp" name = "data[adp]" placeholder="ADP" required/>
+                        <input type="text" class = "edit-numbers" id="edit-tier" name = "data[tier]" placeholder = "Tier" required/>
+                    </div>
+
+                </div>
+
+                <div>
+                    <textarea type="text" id="edit-summary" name ="data[summary]" placeholder="Summary" rows="5" cols="80"></textarea>
+                </div>
+
+                <span class = "badges-head">Badges</span>
+                <div id = "edit-badge-master-container">
+                    <div class="edit-badge-subcontainer">
+                        <div class="edit-badge-mini-container">
+                            <input type = "checkbox" class = "edit-badge" id = "flame" name = "data[flame_or_fade]" value = "Flame"/>
+                            <label for="flame">
+                                <img src ="../Images/Icons/flames.png" class="edit-badge-label"/>
+                            </label>
+                        </div>
+                        
+                        <div class="edit-badge-mini-container">
+                            <input type = "checkbox" class ="edit-badge" id = "fade" name = "data[flame_or_fade]" value = "Fade"/>
+                            <label for="fade">
+                                <img src ="../Images/Icons/snowflake.png" class="edit-badge-label"/>
+                            </label>
+                        </div>
+
+                        <div class="edit-badge-mini-container">
+                            <input type = "checkbox" class ="edit-badge" id = "breakout" name = "data[breakout]" value = "Yes"/>
+                            <label for="breakout">
+                                <img src ="../Images/Icons/nuclear-power.png" class = "edit-badge-label"/>
+                            </label>
+                        </div>
+                        
+                        <div class="edit-badge-mini-container">
+                            <input type = "checkbox" class ="edit-badge" id = "recent_injury" name = "data[recent_injury]" value = "Yes"/>
+                            <label for="recent_injury">
+                                <img src ="../Images/Icons/red-cross.png" class = "edit-badge-label"/>
+                            </label>
+                        </div>
+                    </div>
+        
+                    <div class = "edit-badge-subcontainer">
+                        <div class="edit-badge-mini-container">
+                            <input type = "checkbox" class ="edit-badge" id = "new_coach" name = "data[new_coach]" value = "Yes"/>
+                            <label for="new_coach">
+                                <img src ="../Images/Icons/coach.png" class = "edit-badge-label"/>
+                            </label>
+                        </div>
+                        <div class="edit-badge-mini-container">
+                            <input type = "checkbox" class ="edit-badge" id = "new_team" name = "data[new_team]" value = "Yes"/>
+                            <label for="new_team">
+                                <img src ="../Images/Icons/moving-truck.png" class = "edit-badge-label"/>
+                            </label>
+                        </div>
+                        <div class="edit-badge-mini-container">
+                            <input type = "checkbox" class ="edit-badge" id = "hero" name = "data[hero]" value = "Yes"/>
+                            <label for="hero">
+                                <img src ="../Images/Icons/hero.png" class = "edit-badge-label"/>
+                            </label>
+                        </div>
+                        <div class="edit-badge-mini-container">
+                            <input type = "checkbox" class ="edit-badge" id = "expensive" name = "data[expensive]" value = "Yes"/>
+                            <label for="expensive">
+                                <img src ="../Images/Icons/pricey.png" class = "edit-badge-label"/>
+                            </label>
+                        </div>
+        
+                    </div>
+        
+                    <div class = "edit-badge-subcontainer">
+                        <div class="edit-badge-mini-container">
+                            <input type = "checkbox" class ="edit-badge" id = "old" name = "data[old]" value = "Yes"/>
+                            <label for="old">
+                                <img src ="../Images/Icons/hourglass.png" class = "edit-badge-label"/>
+                            </label>
+                        </div>
+                        <div class="edit-badge-mini-container">
+                            <input type = "checkbox" class ="edit-badge" id = "difficult_division" name = "data[difficult_division]" value = "Yes"/>
+                            <label for="difficult_division">
+                                <img src ="../Images/Icons/shield.png" class = "edit-badge-label"/>
+                            </label>
+                        </div>
+                        <div class="edit-badge-mini-container">
+                            <input type = "checkbox" class ="edit-badge" id = "easy_division" name = "data[easy_division]" value = "Yes"/>
+                            <label for="easy_division">
+                                <img src ="../Images/Icons/cupcake.png" class = "edit-badge-label"/>
+                            </label>
+                        </div>
+                        <div class="edit-badge-mini-container">
+                            <input type = "checkbox" class ="edit-badge" id = "high_powered_o" name = "data[high_powered_o]" value = "Yes"/>
+                            <label for="high_powered_o">
+                                <img src ="../Images/Icons/nuclear-plant.png" class = "edit-badge-label"/>
+                            </label>
+                        </div>
+                    </div>
+        
+                    <div class = "edit-badge-subcontainer">
+                        <div class="edit-badge-mini-container">
+                            <input type = "checkbox" class ="edit-badge" id = "rookie" name = "data[rookie]" value = "Yes"/>
+                            <label for="rookie">
+                                <img src ="../Images/Icons/rookie.png" class = "edit-badge-label"/>
+                            </label>
+                        </div>
+                        <div class="edit-badge-mini-container">
+                            <input type = "checkbox" class ="edit-badge" id = "ppr_machine" name = "data[ppr_machine]" value = "Yes"/>
+                            <label for="ppr_machine">
+                                <img src ="../Images/Icons/ppr.png" class = "edit-badge-label"/>
+                            </label>
+                        </div>
+                        <div class="edit-badge-mini-container">
+                            <input type = "checkbox" class ="edit-badge" id = "big_play" name = "data[big_play]" value = "Yes"/>
+                            <label for="big_play">
+                                <img src ="../Images/Icons/big_play.png" class = "edit-badge-label"/>
+                            </label>
+                        </div>
+                        <div class="edit-badge-mini-container">
+                            <input type = "checkbox" class ="edit-badge" id = "goal_line" name = "data[goal_line]" value = "Yes"/>
+                            <label for="goal_line">
+                                <img src ="../Images/Icons/goal_line.png" class = "edit-badge-label"/>
+                            </label>
+                        </div>
+                    </div>
+        
+                </div>
+                <br>
+                
+                <div class = "editBtn">
+                    
+                    <button id = "btn" type = "submit" class = "editNewPlayerBtn">Edit Player</button>
+                    <!-- test-->
+                </div>
+                <div id ="msg">
+                    <pre></pre>
+                </div>
+            </form>
+        </div>  
+    </div>
+
     <div id = "all-containers" class = "all-containers">
         <div class = "features-box">
             <div id = "filter-container" class = "filter-container">
@@ -60,6 +256,7 @@
                 <button id = "undo-button" class = "pick-button">Undo Pick</button>
             </div>
         </div>
+
         <div id = "player_container_1" class = "player_container">
             <label for="player_container_1" class ="tier-label-1">1</label>
         </div>
@@ -97,7 +294,9 @@
     <div class = "attribute_container" id="attribute_container"></div>
 </body>
 
+<script src="Scripts/editPopup.js"></script>
 <script src="Scripts/players.js"></script>
+
 
 
 

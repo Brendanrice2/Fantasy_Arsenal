@@ -198,6 +198,7 @@
         <div class = "editBtn">
             
             <button id = "btn" type = "submit" class = "editNewPlayerBtn">Edit Player</button>
+            <!-- test-->
         </div>
         <div id ="msg">
             <pre></pre>
@@ -212,6 +213,16 @@
         }
 
         function checkPosition(position){
+
+            /*** 
+             * This function will check the radio button for the position
+             * based on the position value from the player data
+             * 
+             * @param {string} position - The position value from the player data
+             * 
+             * @returns {void}
+             */
+
             const idStr = "position-"+position;
             positionId = idStr.toLowerCase();
             document.getElementById(positionId).checked = true;
@@ -219,6 +230,16 @@
         }
 
         function setBadges(playerData){
+
+            /*** 
+             * This function will set the radio buttons for the badges
+             * based on the badge values from the player data
+             * 
+             * @param {object} playerData - The player data object
+             * 
+             * @returns {void}
+             */
+
             if (playerData.flame_or_fade === "Flame"){document.getElementById('flame').checked = true;}
             if (playerData.flame_or_fade === "Fade"){document.getElementById('fade').checked = true;}
             if (playerData.breakout === "Yes"){document.getElementById('breakout').checked = true;}

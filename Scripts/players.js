@@ -248,7 +248,8 @@ function createPlayerRow(item, dataContainer){
 
     const rowDiv = document.createElement('div');
     rowDiv.classList.add('row_' + item.tier);
-    rowDiv.id = item.id;    // Added change - might work to better grab specific player divs
+    rowDiv.id = item.id; 
+    rowDiv.dataset.drafted= "false";
     
     const playerName = document.createElement('span');
     playerName.textContent = item.first_name + ' ' + item.last_name;
@@ -317,23 +318,20 @@ function createPlayerRow(item, dataContainer){
     rowDiv.appendChild(playerPositionRank);
 
     closeDiv.addEventListener('click', function(){
-        // draftedPlayers[item.id] = {};
-        // draftedPlayers[item.id].rowDiv = rowDiv;
-        // draftedPlayers[item.id].children = [];
-        // lastPickId = item.id;
-        // while (rowDiv.firstChild){
-        //     draftedPlayers[item.id].children.push(rowDiv.firstChild);
-        //     rowDiv.removeChild(rowDiv.firstChild);
-        // }
-        // rowDiv.style.display = 'none';
         const rowIndex = Array.from(dataContainer.children).indexOf(rowDiv);
         draftedPlayers.push( {rowDiv, parent: dataContainer, rowIndex });
         rowDiv.style.display = 'none';
-        console.log("Drafted: ", rowDiv.id);
+        rowDiv.dataset.drafted = "true";
        
     });
 
     rowDiv.appendChild(closeDiv);
+
+    // Attributes of rowDiv
+    rowDiv.draggable = true;
+    rowDiv.addEventListener('dragstart', function(event){
+        event.dataTransfer.setData('text/plain', rowDiv.id);
+    });
 
     dataContainer.appendChild(rowDiv);
 }
@@ -341,7 +339,7 @@ function createPlayerRow(item, dataContainer){
 function editPopup(item){
 
     /**
-     * Function to edit popup for each player row.
+     * Function to edit the info popup for each player row.
      * 
      * Params:
      * - item: Object containing player data
@@ -402,7 +400,26 @@ function editPopup(item){
         const thisId = item.id;
         const editPW = prompt('Enter password:');
         if (editPW === correctPassword){
-            window.location.href = `Pages/Edit_Player.html?id=${encodeURIComponent(thisId)}`;
+            // window.location.href = `Pages/Edit_Player.html?id=${encodeURIComponent(thisId)}`;
+            // above is original code to open up other html tab
+            const editContainer = document.getElementById('edit-container');
+            editContainer.style.display = 'flex';
+
+            // Call new function to populate the edit container
+            
+            populateEditContainer(item, editContainer);
+            // buildRadioButtonLogic(); //works as intended
+            
+            const trueBadge = document.getElementById('flame');
+            const falseBadge = document.getElementById('fade');
+            console.log("*************************");
+            console.log("TRUE BADGE: " + trueBadge.checked);
+            console.log("FALSE BADGE: " + falseBadge.checked);
+            console.log("*************************");
+            // buildRadioButtonLogicTest(); //testing new logic
+
+
+
         }
         else{
             alert("You don't have access to this feature.");
@@ -521,16 +538,16 @@ function redirectToPage(page){
 }
 
 
-const observer = new MutationObserver(function(mutations){
-    /**
-     * Mutation Observer to check for changes in the DOM, and call the necessary functions.
-     */
-    mutations.forEach(function(mutation){
+// const observer = new MutationObserver(function(mutations){
+//     /**
+//      * Mutation Observer to check for changes in the DOM, and call the necessary functions.
+//      */
+//     mutations.forEach(function(mutation){
         
-    });
-});
+//     });
+// });
 
-observer.observe(document.body, {childList: true, subtree: true});
+// observer.observe(document.body, {childList: true, subtree: true});
 
 function resetFilter(){
 
@@ -587,8 +604,8 @@ function buildUndoButton(){
     document.getElementById('undo-button').addEventListener('click', function(){
         if (draftedPlayers.length > 0) {
             const {rowDiv, parent, rowIndex} = draftedPlayers.pop();
-            console.log("Undoing player id: ", rowDiv.id);
             rowDiv.style.display = 'block';
+            rowDiv.dataset.drafted = "false";
             
             if (rowIndex >= parent.children.length){
                 parent.appendChild(rowDiv);
@@ -621,7 +638,7 @@ function buildPositionFilters(){
 
                 const filterPosition = filterButton.id.toLowerCase().substring(0,2);
 
-                const shouldShow = filterPosition.includes(playerPosition);
+                const shouldShow = filterPosition.includes(playerPosition) && playerRow.dataset.drafted === "false";
 
                 playerRow.style.display = shouldShow ? 'block' : 'none';
                 
@@ -646,7 +663,7 @@ function buildSearchBar(){
 
         playerRows.forEach(playerRow =>{
             const playerLabel = playerRow.querySelector('.name').textContent.toLowerCase();
-            const shouldShow = playerLabel.includes(searchTerm);
+            const shouldShow = playerLabel.includes(searchTerm) && playerRow.dataset.drafted === "false";
             playerRow.style.display = shouldShow ? 'block' : 'none';
         });
     });
@@ -668,8 +685,66 @@ function buildResetButton(){
             playerRow.querySelectorAll('*').forEach(child => {
                 child.style.display = '';
             })
-        })
-    })
+        });
+    });
+}
+
+function buildContainerDropEvent(){     //NEED TO ADD FUNCTIONALITY TO CHANGE RANKINGS
+    /**
+     * Function to build drop handling for player containers.
+     */
+
+    const playerContainers = document.querySelectorAll('.player_container');
+    
+    console.log(playerContainers.length);
+    playerContainers.forEach(playerContainer => {
+
+        playerContainer.addEventListener('dragover', function(event){
+            event.preventDefault();
+        });
+
+        playerContainer.addEventListener('drop', function(event){
+            event.preventDefault();
+            const playerId = event.dataTransfer.getData('text/plain');
+            const draggedPlayerRow = document.getElementById(playerId);
+            const dropTarget = event.target.closest('.player-container') || playerContainer;   // If this is janky just do event.target
+
+            console.log(dropTarget);
+
+            // Checks to see if the player was dropped in the same container
+            if (playerContainer === dropTarget){  
+
+                const rect = playerContainer.getBoundingClientRect();
+                const offsetX = event.clientX - rect.left;
+                const children = Array.from(playerContainer.children);
+    
+
+                let closestElement = null;
+                let closestOffset = Number.MAX_VALUE;
+                children.forEach(child => {
+                    if(child !== draggedPlayerRow && child.id > 0){
+                        const childRect = child.getBoundingClientRect();
+                        const childOffset = Math.abs(childRect.left + childRect.width / 2 - offsetX);
+                        
+                        if (childOffset < closestOffset){
+                            closestOffset = childOffset;
+                            closestElement = child;
+                        }
+                    }
+                });
+
+                if (closestElement) { 
+                    playerContainer.insertBefore(draggedPlayerRow, closestElement);
+                } else {
+                    playerContainer.insertAfter(draggedPlayerRow, playerContainer.children[playerContainer.children.length - 1]);
+                }
+            }
+
+            else{
+                playerContainer.appendChild(draggedPlayerRow);
+            }
+        });
+    });
 }
 
 function initialSetup(){
@@ -679,11 +754,28 @@ function initialSetup(){
 
     // Filtering for positions will add back drafted players. Look for a fix for this.
 
+    // NOTE - play around with all the buttons, for example undoing a pick while filtered can throw a QB in there while the site is filtered for RBs
+
+    // NOTE - PLEASE - make a much better player editor this time around. Editing now wastes API fetches and going through the sheet isn't efficient.
+
     createIconAttributions();
     buildUndoButton(); //works as intended
     buildPositionFilters(); //works as intended
     buildSearchBar();   //works as intended
-    buildResetButton(); //on this now
+    buildResetButton(); //needs to be done
+    buildEditSaveButton(); //in progress
+   
+
+    // setup edit button? 
+
+}
+
+function postSetup(){
+    /**
+     * Function to run after initial player setup. This includes building event handlers for player divs.
+     */
+
+    buildContainerDropEvent();
 
 }
 
@@ -695,11 +787,12 @@ function main(){
     initialSetup();
 
     // Uncomment this when pushing
-    // fetchDataFromSheetDB();  
+    fetchDataFromSheetDB();  
+
+    // Function call to setup all post event listeners, specific elements, and more.
+    postSetup();
     
 }
 
 main();
-
-
 
