@@ -57,8 +57,9 @@ function fetchDataFromSheetDB(){
      * 
      */
 
-    const sheetDBApiEndpoint = 'https://sheetdb.io/api/v1/fc74l8c82eqve';
-    fetch(sheetDBApiEndpoint)
+    // const sheetDBApiEndpoint = 'https://sheetdb.io/api/v1/fc74l8c82eqve';
+    // fetch(sheetDBApiEndpoint)
+    fetch('../Processing/fetch_players.php')
         .then(response => response.json())
         .then(data => {
             
